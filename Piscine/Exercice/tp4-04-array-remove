@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="html" xmlns="http://www.w3.org/1999/xhtml">
+
+<head id="head" >
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>
+ TP4. Ex4. Suppresion dynamique d'un élément dans un tableau
+</title>
+
+<meta name="keywords" content=""/>
+<meta name="description" content=""/>
+<link href="http://10.34.128.10:8181/res/styles/default/style.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/node.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/tutorial.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/menu.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/context-menu.css" rel="stylesheet" type="text/css"/><script src="http://10.34.128.10:8181/res/js/prototype.js"></script><script src="http://10.34.128.10:8181/res/js/scriptaculous.js"></script><script src="http://10.34.128.10:8181/res/js/essilab.js"></script>
+
+
+</head>
+<body id="body" >
+
+<div id="container" >
+
+<div id="headerWrapper" >
+
+<div id="header" >
+
+
+
+
+
+
+
+<div id="menuGlobal" class="Menu ">
+	<ul>
+								
+	<li class="MenuItem">
+		<a href="http://10.34.128.10:8181/cours">Support de cours</a>
+			</li>
+								
+	<li class="MenuItem">
+		<a href="http://10.34.128.10:8181/exercises">Exercices</a>
+			</li>
+								
+	<li class="MenuItem">
+		<a href="http://10.34.128.10:8181/student/_points">Résultats</a>
+			</li>
+			</ul>
+</div>
+
+</div>
+</div>
+<div id="content" >
+
+<div class="ContentPane" >
+
+
+
+<div class="Tutorial">
+<h1>TP4. Ex4. Suppresion dynamique d'un élément dans un tableau</h1>
+<table>
+<tr><td>Temps de référence</td><td>15 mn</td></tr>
+<tr><td>Temps estimé</td><td>25 mn</td></tr>
+<tr><td>Temps max</td><td>40 mn</td></tr>
+<tr><td>Répertoire de rendu</td><td>~/seminaire/tp4/array_remove</td></tr>
+<tr><td>Fichier(s) de rendu</td><td>array_remove.c</td></tr>
+</table>
+
+<h2>Enoncé</h2>
+
+<p>Construire un programme permettant de supprimer un élément d'un tableau dynamique avec <strong>redimensionnement</strong>.
+</p>
+
+Le programme devra contenir une fonction de prototype :
+
+<pre class="ScreenEditor">
+/*
+** arr1, the array to perform.
+*/
+int* array_remove(const int* arr1, unsigned int index, unsigned int* length);
+</pre>
+<p>Fin de fonction main attendue</p>
+
+<pre class="ScreenEditor">
+int i;
+unsigned int length= ...;
+int* result = array_remove( arr1, index, &amp;length);
+for (i=0; i&lt;length;i++)
+ printf("%d ", *(result+i));
+free(result);
+</pre>
+
+<h2>Exemple de résulat(s) attendu(s)</h2>
+
+<pre class="ScreenConsole">
+./monProgramme 15 1 9 3 18 - 3 
+15 1 9 18
+./monProgramme 15 3 9 10 - 9
+15 3 9 10
+./monProgramme 15 12
+Nombre de parametres insuffisant
+</pre>
+
+<h2>Travail attendu</h2>
+<ol>
+  <li>Dans le répertoire 'tp4', créer un sous répertoire 'array_remove'</li>
+  <li>Créer un fichier array_remove.c</li>
+  <li>Implémenter le programme dans le fichier c créé</li>
+  <li>Le compiler, corriger les erreurs si besoin.</li>
+  <li>Le copier dans son répertoire de rendu.</li>
+</ol>
+
+</div>
+
+</div>
+<br class="Cleaner" />
+
+</div>
+</div>
+</body>
+</html>

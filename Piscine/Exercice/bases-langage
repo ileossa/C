@@ -1,0 +1,647 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="html" xmlns="http://www.w3.org/1999/xhtml">
+
+<head id="head" >
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>
+ Introduction au langage C
+</title>
+
+<meta name="keywords" content=""/>
+<meta name="description" content=""/>
+<link href="http://10.34.128.10:8181/res/styles/default/style.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/node.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/tutorial.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/menu.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/context-menu.css" rel="stylesheet" type="text/css"/><script src="http://10.34.128.10:8181/res/js/prototype.js"></script><script src="http://10.34.128.10:8181/res/js/scriptaculous.js"></script><script src="http://10.34.128.10:8181/res/js/essilab.js"></script>
+
+
+</head>
+<body id="body" >
+
+<div id="container" >
+
+<div id="headerWrapper" >
+
+<div id="header" >
+
+
+
+
+
+
+
+<div id="menuGlobal" class="Menu ">
+	<ul>
+								
+	<li class="MenuItem">
+		<a href="http://10.34.128.10:8181/cours">Support de cours</a>
+			</li>
+								
+	<li class="MenuItem">
+		<a href="http://10.34.128.10:8181/exercises">Exercices</a>
+			</li>
+								
+	<li class="MenuItem">
+		<a href="http://10.34.128.10:8181/student/_points">Résultats</a>
+			</li>
+			</ul>
+</div>
+
+</div>
+</div>
+<div id="content" >
+
+<div class="ContentPane" >
+
+
+<div class="Tutorial">
+<h1>Introduction au langage C</h1>
+
+<h2>Relation entre langage, programme et environnement d'exécution.</h2>
+
+<h3>Un langage compilé</h3>
+
+<p>Dans le domaine de l'information moderne, on utilise aujourd'hui principalement des langages de haut niveau, c'est à dire plus facilement compréhensible par l'homme, en opposition avec des langages bas niveau, comme l'assembleu, plus facilement compréhensible par la machine.</p>
+<p>Parmi ces langages, on distingue 2 grandes familles : les langages compilés et ceux interprétés.</p>
+
+<ul>
+<li><strong>Les langages compilés</strong><p>Il s'agit des langages qui nécessite un étape de compilation unique pour pouvoir être ensuite executé et interprétés par le système. Parmis ces langages on peu citer le C, c++, Java, Pascal...</p><p>Etant donnée que la phase compilation n'est réalisé qu'une fois, ce type de langage est plus adapté pour la réalisation d'applications plus efficaces ou de plus grande envergure. Par ailleurs ils permette un accès plus précis aux ressources du systèmes.</p></li>
+<li><strong>Les langages interprétés : </strong><p>Dans ce cas, le programme est compilé et interprété à la volée à chaque fois qu'il est executé. Ces langages sont très adaptés pour le développement rapide d'application, de prototypes, où pour l'extension de programme sous forme de plug-in. En revanche puisqu'ils doivent être compilé à la volé, puis interprétés, leur exécution est plus lente. Parmi ces langages on peut citer : php, javascript, perl ou encore lua, python...</p><p>Bien que très pratique, ces langages ne sont pas conseillés là ou les exigences non fonctionnelles compte (rapidité, sécurité, fiabilité, rubustesse...)</p></li>
+</ul>
+
+<h3>Le C, est un langage compilé</h3>
+<p>Le C est le langage compilé. Ainsi un programme C est décrit par un ensemble de fichiers textes, portant des extensions .C et .H, et nommées sources. La compilation se réalise en 4 phases successives:</p>
+
+<ul>
+<li><strong>Le traitement par le préprocesseur</strong> Les fichiers sources sont analysés par le préprocesseur qui effectue des transformation purement textuels selon des directives (remplacement de chaines de caractère, inclusion de fichier, comilation conditionnelle...</li>
+<li><strong>La compilation</strong> La compilation proprement dite traduit le fichier généré par le préprocesseur en code assembleur, c'est à dire une suite d'instructions formées de mnémoniques propre à l'architecture du processeur concerné.</li>
+<li><strong>L'assemblage</strong>Cette opération transforme le code assembleur en un binaire, c'est à dire en instructions directements compréhensibles par le processeur.</li>
+<li><strong>L'édition de liens</strong>Un programme est généralement séparé en plusieurs fichiers sources. Une fois chaque fichier source assemblé, il faut les lier entre eux pour former l'executable final (le fichier qui servira à lancer le programme.)</li>
+
+</ul>
+
+<h3>Compilation d'un programme.</h3>
+<p>Il existe un grand nombre de compilateurs C pour chaque systèmes d'exploitations (Windows, Linux, Mac). Dans le cadre de nos exercices, nous utiliseronts le compilateur libre linux gcc, porté sous Windows sous le nom de minGW.</p>
+<p>Nous vous présentons ici les commandes de bases pour transformer un fichier source en programme executable. Elle s'effetue généralement en deux étapes :</p>
+
+<ul>
+  <li>
+    <strong>Transformation du code source en fichier binaire (.o)</strong>
+    <pre class="ScreenConsole">
+      gcc -O3 -Wall -c prog.c
+    </pre>
+  </li>
+  <li>
+    <strong>Regroupement des différents fichiers binaires constituant le programme (édition de liens)</strong>
+    <pre class="ScreenConsole">
+      gcc -o prog prog.o
+    </pre>
+  </li>
+</ul>
+
+<p>Lorsque tous les fichiers sources sont présents dans un même repertoire, l'étape de compilation peut être unique et simplifiée :</p>
+    
+<pre class="ScreenConsole">
+  gcc prog.c
+</pre>
+
+<strong>Détails des options</strong>
+<ul>
+<li><strong>-O</strong>, effectue des optimisations sur le code généré. La compilation peut alors prendre plus de temps et utiliser plus de mémoire. Le degré d'optimisation et le élevé est 3.</li>
+<li><strong>-Wall</strong> : active des messages d'avertissement supplémentaire</li>
+<li><strong>-c</strong> : Demande au compilateur de n'effectuer que la première étape de compilation </li>
+<li><strong>-o</strong> : permet de préciser un nom de fichier à l'exécutable final.</li>
+</ul>
+
+<h2>Les bases du langage</h2>
+
+<h3>Les mots clés</h3>
+<p>Le C est un langage défini par un certain nombre de mots clés et de symboles réservés. Vous ne pourrez par utilisés ces identifiants en tant qu'identifiant de variable ou de fonction. En voici la liste, par ordre alphabétique  </p>
+<ul class="Inline">
+<li>auto</li>
+<li>break</li>
+<li>case</li>
+<li>char</li>
+<li>const</li>
+<li>continue</li>
+<li>default</li>
+<li>do</li>
+<li>double</li>
+<li>else</li>
+<li>enum</li>
+<li>extern</li>
+<li>float</li>
+<li>for</li>
+<li>goto</li>
+<li>if</li>
+<li>int</li>
+<li>long</li>
+<li>register</li>
+<li>return</li>
+<li>short</li>
+<li>signed</li>
+<li>sizeof</li>
+<li>static</li>
+<li>struct</li>
+<li>switch</li>
+<li>typedef</li>
+<li>union</li>
+<li>unsigned</li>
+<li>void</li>
+<li>volatile</li>
+<li>while</li>
+</ul>
+
+<h3>Les commentaires</h3>
+
+<p>Les commentaires sont indispensable à la compréhension de n'importe quel programme informatique non triviale.</p>
+<p>Ils permette le travail collaboratif et la maintenance.</p>
+<p>Le C propose deux types de commentaires :</p>
+<ul>
+<li><strong>Le commentaires mono-lignes (introduit dans la norme C99)</strong>
+<preclass="ScreenEditor"> 
+// Ceci est un commentaire mono-ligne,
+</pre>
+</li>
+<li><strong>Le commentaires multiligne</strong>
+<pre class="ScreenEditor"> 
+/* Ceci est un 
+   commentaire 
+   multi-ligne 
+*/
+</pre>
+</li>
+</ul>
+<p>Il existe plusieurs normes de formalisation de commentaires, nous vous recommandons de vous reporter à l'outil doxygen, qui est un générateur de documentation automatique référent.</p>
+
+<h3>Structure générale d'un programme C</h3>
+
+<p>D'une manière générale, un programme consiste en un ensemble organisé de sous programmes appelés fonctions organisés entre eux. La fonction principale d'un programme appelée main constitue le point d'entrée (et de sortie) d'un programme.</p>
+<p>Voici à quoi ressemble un programme C minimaliste qui affichera sur la console "Hello World"</p>
+<pre class="ScreenEditor"> 
+#include &lt;stdio.h&gt; // Directive de preprocesseur
+int main(int argc, char** argv) {
+  printf("Hello world!");
+}
+</pre>
+
+<p>Un programme est donc constitué d'un ensemble de fonction, mais aussi de variables qui représente des données ainsi que de structures de controles qui organise le déroulement du programme (du flot d'exécution)</p>
+
+<h3>Notion d'identification</h3>
+<p>Un identificateur permet de donner un nom à une entité d'un programme.Qu'il s'agisse d'une fonction ou d'une variable ils sont sujets aux règles suivantes :</p>
+
+<ul>
+<li>Ils sont formées d’une suite de lettres (’a’ à ’z’ et ’A’ à ’Z’), de chiffres (0 à 9) et du signe ’_’. En particulier, les lettres accentuées sont interdites ;</li>
+<li>le premier caract`ere de cette suite ne peut pas ˆetre un chiffre</li>
+<li>les identificateurs sont sensibles à la casse : abc et Abc sont 2 identificateurs distincts</li>
+</ul>
+
+<p>Etant donnée que l'identification d'une entité est laissé libre au développeur, il est fortement conseillée d'utiliser des noms significatifs!</p>
+<pre class="ScreenEditor"> 
+int _is_connected = 0; // Valide.
+int 2_good_4_me = 12; // Invalide.
+char* message = 12; // Valide.
+</pre>
+
+<h3>Notion de variable</h3>
+
+<p>Une variable est un espace mémoire situé en mémoire et pouvant stocker, selon son type, des données.</p>
+<p>Une variable est définie(déclarée) par un un identifiant, précédé d'un type et éventuellement succéder d'un opérateur d'affectation et d'une valeur pour en effectuer son initialisation.</p>
+
+<pre class="ScreenEditor"> 
+int _is_connected = 0;
+</pre>
+<p>Dans l'exemple ci-dessus, on déclare une variable identifié sous le nom de "_is_connected" de type int (entière) et initialisée à la valeur 0</p>
+<p>Cette variable sera donc accessible, dans la limite de sa portée, sous cette identifiant.</p>
+<pre class="ScreenEditor"> 
+int _is_connected = 0; // Valide.
+    _is_connected = 1;
+int connection;
+    connection = is_connected;
+</pre>
+
+<p>Dans l'exemple ci-dessus, la variable est accédée à la ligne 2 en mode écriture, et à la ligne 4 en mode lecture.</p>
+<p><strong>Remarque</strong> : Un identifiant est unique à l'intérieur de sa portée.</p>
+
+<h3>Les types primitifs</h3>
+<p>Il s'agit des types de bases définis en standard par le langage, ils permettent de définir la nature d'une variable. Le langage C est très faiblements typé, il ne propose que des types numériques</p>
+
+<h4>Les entiers</h4>
+<p>Les types entiers sont les plus utilisés et représente des valeurs entières. Le langage c permet de préciser leur taille en octet et donc l'espace de valeur qu'ils peuvent prendre.</p>
+
+<pre class="ScreenEditor"> 
+short int mask;
+int i;
+long int id;
+unsigned int count;
+</pre>
+<p>Le mot clé <strong>unsigned</strong> indique le l'espace de valeur pris par count est sur l'ensemble des entiers naturels(&gt;=0). Par défaut les entiers sont signés.</p>
+<p>Le type int est calé sur la longueur du mot machine, en d'autre terme si le processeur est un 16bit, ce sera sur 2 octets, un 32 bit 4 octets. Les autres types sont fixes. Le mot machine étant le plus rapide à traiter (puisqu'il ne nécessite pas de conversion)</p>
+
+<strong>Tableau récapitulatif des types</strong>
+<table>
+<tr><th>Type</th><th>Taille mémoire</th><th>Intervalle</th></tr>
+<tr><td>char</td><td>1 octet</td><td>[-128 ;127]</td></tr>
+<tr><td>unsigned char</td><td>1 octet</td><td>[0; 255]</td></tr>
+<tr><td>int</td><td>2,4,8 octets</td><td>[-2¹⁵; 2¹⁵-1] ou [-2³¹; 2³¹-1] ...</td></tr>
+<tr><td>unsigned int</td><td>2,4,8 octets</td><td>[0; 2¹⁶-1] ou [0; 2³²-1] ...</td></tr>
+<tr><td>short int</td><td>2 octets</td><td>[-2¹⁵; 2¹⁵-1]</td></tr>
+<tr><td>unsigned short int</td><td>2 octets</td><td>[0; 2¹⁶-1]</td></tr>
+<tr><td>long</td><td>4 octets</td><td>[-2³¹; 2³¹-1]</td></tr>
+<tr><td>unsigned long </td><td>4 octets</td><td>[0; 2³²-1]</td></tr>
+<tr><td>long long *</td><td>8 octets</td><td>[-2⁶³; 2⁶³-1]</td></tr>
+<tr><td>unsigned long long *</td><td>8 octets</td><td>[0; 2⁶⁴-1]</td></tr>
+<tr><td colspan="3">* Dépend du compilateur utilisé.</td></tr>
+</table>
+
+<p>Les valeurs limites des différents types sont définis dans le fichier header &lt;limits.h&gt;</p>
+
+<strong>Représentation des valeurs.</strong>
+<p>Le langage C permet de représenter le valeurs entières selon 3 bases</p>
+<ul>
+	<li>
+	    <strong>Base 10, Décimale</strong>
+	    <p>c'est la base par défaut.</p>
+	    <pre class="ScreenEditor"> 
+	      short int mask = 372;
+	    </pre>
+	</li>
+	<li>
+	    <strong>Base 8, Octale</strong>
+	    <p>On commence par un 0 suivi de chiffres octaux</p>
+	    <pre class="ScreenEditor"> 
+	      short int mask = 0477;
+	    </pre>
+	</li>
+	<li>
+	    <strong>Base 16, Hexadécimale</strong>
+	    <p>On commence par un 0x ou 0X suivi de chiffres héxadécimaux</p>
+	    <pre class="ScreenEditor"> 
+	      short int mask = 0x5A2b;
+	    </pre>
+	</li>
+</ul>
+
+<h4>Les caractères</h4>
+
+<p>Le C propose un type de variable pour représenté la notion de caractère, c'est à dire une donnée devant être affichée, typiquement une lettre, un chiffre, un espace, un retour à la ligne... </p>
+<p>Il s'agit en fait d'un entier codé sur 8 bits interprété comme un caractère utilisé sur la machine (il s'agit en général du code ASCII de ce caractère)</p>
+
+<pre class="ScreenEditor"> 
+/* Declaration d’une variable c1 de type char a laquelle on affecte la valeur ’a’. 
+<strong>Important : </strong>Noter l’utilisation du simple quote
+*/
+char c1 = 'a'; 
+char c2 = 97; //c2 correspond egalement au caractere ’a’, puisque dans la table ASCII, la lettre 'a' représente la valeur 97.
+</pre>
+
+<strong>Table des principaux code ASCII</strong>
+<img src="http://10.34.128.10:8181/img/asciifull.gif"/>
+
+<strong>Caractères particuliers</strong>
+<p>Il existe un certain nombre de caractères particuliers utilisant le caractère d'échappement \ dont les principaux sont les suivants</p>
+
+<table>
+<tr><td><strong>Caractère</strong></td><td>'\n'</td><td>'\t'</td><td>'\b'</td><td>'\''</td><td>'\"'</td></tr>
+<tr><td><strong>Sémantique</strong></td><td>retour à la ligne</td><td>tabulation</td><td>backspace</td><td>'</td><td>"</td></tr>
+</table>
+
+<h4>Les flottants</h4>
+
+<p>On distingue 3 types de flottants. La différence entre eux est leur précision. Du plus faible à la plus forte  on a float, double, long double.</p>
+<pre class="ScreenEditor"> 
+double Pi = 3.14159;
+</pre>
+<table>
+<tr><th>Type</th><th>Taille mémoire</th><th>Intervalle</th><th>Précision</th></tr>
+<tr><td>float</td><td>4 octets</td><td>[1,2∗10⁻³⁸; 3,4∗10³⁸]</td><td>6 chiffres décimaux</td></tr>
+<tr><td>double</td><td>8 octets</td><td>[2,3∗10⁻³⁰⁸; 1,7∗10^³⁰⁸]</td><td>15 chiffres décimaux</td></tr>
+<tr><td>long double</td><td>10 octets</td><td>[3,4∗10⁻⁴⁹³²; 1,1∗10⁴⁹³²]</td><td>19 chiffres décimaux</td></tr>
+</table>
+
+<h4>Le type void</h4>
+
+<p>On a vu que toute variable C était typée, de même que toute valeur de retour
+d’un fonction. Mais il peut arriver qu’aucune valeur ne soit disponible. Pour
+exprimer l’idée de ”aucune valeur”, on utilise le mot-clé void. Ce type est utilisé
+dans trois situations :</p>
+
+<ul>
+<li>
+Les expressions de type void : on les rencontre principalement dans la
+déclaration de fonctions qui n’ont pas de valeur de retour.
+<pre class="ScreenEditor"> 
+void exit (int status);
+</pre>
+</li>
+<li>
+Le prototype de fonctions sans paramètres 
+<pre class="ScreenEditor"> 
+int rand(void);
+</pre>
+A noter qu’en pratique, on écrira plus simplement : int rand();
+<pre class="ScreenEditor"> 
+int rand();
+</pre>
+</li>
+<li>
+Les pointeurs vers le type void : le type void * est le type pointeur générique, c’est à dire qu’il est capable de pointer vers n’importe quel type
+d’objet. Il représente donc l’adresse de l’objet et non son type.
+</li>
+</ul>
+
+<h3>La syntaxe du langage</h3>
+
+<h4>Notion d'expression</h4>
+
+<pre class="ScreenEditor"> 
+4 * 512 // Type: int
+4 + 6 * 512 // Type: int; equivalent to 4 + (6 * 512)
+1.0 + sin(x) // Type: double
+srand((unsigned)time(NULL)) // Appel de fonction; type: void
+(int*)malloc(count*sizeof(int)) // Appel de fonction; type: int *
+</pre>
+
+<p>Une expression est une combination d’opérateurs et d’opérandes.</p>
+<p>Dans les cas les plus simples, une expression se résume à une constante, une variable ou un appel de fonction. </p>
+<p>Des expressions peuvent également être utilisées comme opérandes et être jointes ensembles par des opérateurs pour obtenir des expressions plus complexes.</p>
+<p>Toute expression a un type et si ce type n’est pas void, une valeur. </p>
+
+<h4>Opérateurs arithmétiques</h4>
+
+<p>Les principaux opérateurs arithmétiques sont résumés dans le tableau 2.1. Les opérandes de ces opérateurs peuvent appartenir a tout type arithmétique, à l'exception du % qui requière des opérandes de type entier</p>
+
+<p>On peut effectuer une conversion de type aux opérandes. Le résultat de l’opération prend le type de cette conversion. Ainsi ; 2.0/3 est équivalent à 2.0/3.0 et le résultat est de type float.</p>
+
+<p>Le résultat d’une division d’entiers est aussi un entier !</p>
+
+<pre class="ScreenEditor"> 
+6 / 4 // Resultat: 1
+6 % 4 // Resultat: 2
+6.0 / 4.0 // Resultat: 1.5
+6.0 / 4 // Resultat: 1.5
+</pre>
+
+<table>
+<tr><th>Opérateur</th><th>Traduction</th><th>Exemple</th><th>Résultat</th></tr>
+<tr><td><strong>+</strong></td><td>Addition</td><td>x + y</td><td>l'addition de x et y</td></tr>
+<tr><td><strong>-</strong></td><td>Soustraction</td><td>x - y</td><td>la soustraction de x et y</td></tr>
+<tr><td><strong>*</strong></td><td>Multiplication</td><td>x * y</td><td>la multiplication de x et y</td></tr>
+<tr><td><strong>/</strong></td><td>Division</td><td>x / y</td><td>la division de x et y</td></tr>
+<tr><td><strong>%</strong></td><td>Reste</td><td>x % y</td><td>Reste de la division euclidienne de x par y</td></tr>
+<tr><td><strong>+(unaire)</strong></td><td>signe positif</td><td>+x</td><td>valeur de x</td></tr>
+<tr><td><strong>-(unaire)</strong></td><td>signe négatif</td><td>-x</td><td>négation arithmétique de x</td></tr>
+<tr><td><strong>++(unaire)</strong></td><td>Incrément</td><td>x++ ou ++x </td><td> x = x+1, ++x : préincrément; incrément, puis évaluation. x++ : postincrément; évaluation puis incrément.</td></tr>
+<tr><td><strong>--(unaire)</strong></td><td>Décrément</td><td>x-- ou --x </td><td> x = x-1, --x : prédécrément; décrément, puis évaluation. x-- : postdécrément; évaluation puis décrément.</td></tr>
+</table>
+
+<pre class="ScreenEditor"> 
+int x = 0;
+int y = x++; // y vaut 0;
+int z = x;   // z vaut 1;
+int b = ++x; // b vaut 2;
+</pre>
+
+<h4>Opérateurs d'affectation</h4>
+
+<p>Les opérateurs s'affectation permettent d'écrire dans une variable. On en distingue 2 types</p>
+
+<table>
+<tr><th>Opérateur</th><th>Traduction</th><th>Exemple</th><th>Résultat</th></tr>
+<tr><td><strong>=</strong></td><td>Affectation simple</td><td>x = y</td><td>place la value de y dans x</td></tr>
+<tr><td><strong>(op)=</strong></td><td>Affectation composée</td><td>x += y</td><td>place la valeur de x + y dans x (x=x+y)</td></tr>
+</table>
+
+<p>Exemple d'opérateur composés : += -= *= /= %= &amp;= ^= |= &lt;&lt;= &gt;&gt;=</p>
+
+<h4>Opérateurs relationnels</h4>
+<p>
+Toute comparaison est une expression de type int qui renvoie la valeur 0 (false) ou 1 (true). 
+Il faut que les opérandes soient du même type arithmétique (ou des pointeurs sur des objets de même type).
+</p>
+<table>
+<tr><th>Opérateur</th><th>Traduction</th><th>Exemple</th></tr>
+<tr><td><strong>&lt;</strong></td><td>strictement inférieur</td><td>x &lt; y</td></tr>
+<tr><td><strong>&lt;=</strong></td><td>inférieur ou égal</td><td>x &lt;= y</td></tr>
+<tr><td><strong>&gt;</strong></td><td>strictement supérieur</td><td>x &gt; y</td></tr>
+<tr><td><strong>&gt;=</strong></td><td>supérieur ou égal</td><td>x &gt;= y</td></tr>
+<tr><td><strong>==</strong></td><td>égalité</td><td>x == y</td></tr>
+<tr><td><strong>!=</strong></td><td>inégalité</td><td>x != y</td></tr>
+</table>
+
+<p><strong>Attention</strong> : Une erreur ultra classique est de confondre l’opérateur d’égalité (==) avec celui d’affectation (=)</p>
+<pre class="ScreenEditor"> 
+int i = 2;
+if (x = 4) printf("valeur de x : %d", x);
+if (x == 4) printf("valeur de x : %d", x);
+</pre>
+<p>Dans l'exemple ci-dessus, le code est correcte, mais le résultat n'est dans doute pas celui qu'on attends : les deux conditions sont évaluées à vrai!</p>
+<p>Dans la première condition : on affecte 4 dans x, puis on évalue x (qui est différent de 0 donc vrai) et on affiche</p>
+<p>Dans la seconde condition, on compare x qui vaut désormais 4 à 4 donc vrai, et on affiche.</p>
+<p>Pour éviter ce genre d'étourderie qui peut couter des heures en debuggage, une bonne bratique simple consiste à mettre systématique les valeurs littéraires (ou en lecture seule à gauche)</p>
+<pre class="ScreenEditor"> 
+int i = 2;
+if (4 = x) printf("valeur de x : %d", x);
+if (4 == x) printf("valeur de x : %d", x);
+</pre>
+
+<p>Ainsi la première condition provoquera une erreur de compilation, et vous pourrez corriger immédiatement l'erreur.</p>
+
+
+<h4>Opérateurs logiques</h4>
+<p>
+Les opérateurs logiques permettent de combiner le
+résultat de plusieurs expressions de comparaison en une seule expression logique.
+</p>
+<p>
+Les opérandes des opérateurs logiques peuvent être n’importe quel scalaire (i.e
+arithmétique ou pointeur). 
+</p>
+<p>
+Toute valeur différente de 0 est interprétée comme
+vraie (et 0 correspond `a ’faux’). 
+</p>
+<p>Comme pour les expressions relationnelles, les expressions logiques renvoient une valeur entière (0=false ; 1=true).</p>
+
+<p>
+Remarque : les opérateurs &amp;&amp; et || évaluent les opérandes de gauche à droite et le résultat est connu dès l’opérande de gauche. Ainsi, l’opérande de droite n’est évaluée que si celle de gauche est vraie dans le cas de l'opérateur && ou fausse dans le cas de l'opérateur ||
+</p>
+
+<pre class="ScreenEditor"> 
+if (0 &amp;&amp; mask) printf("Jamais de la vie"); // mask n'est jamais évalué.
+if (1 || mask) printf("Jamais de la vie"); // mask n'est jamais évalué.
+</pre>
+<table>
+<tr><th>Opérateur</th><th>Traduction</th><th>Exemple</th></tr>
+<tr><td><strong>&amp;&amp;</strong></td><td>ET Logique</td><td>x &amp;&amp; y</td></tr>
+<tr><td><strong>||</strong></td><td>OU Logique</td><td>x ||= y</td></tr>
+<tr><td><strong>!</strong></td><td>NON Logique</td><td>!x</td></tr>
+</table>
+
+
+<h4>Opérateurs bit à bit</h4>
+
+<p>Les opéerateurs bits à  bits n’opèrent que sur des entiers. Les opérandes sont interprétées bits par bits 
+(le bit 1 correspondant à une valeur vraie, 0 est considérée comme une valeur fausse).</p>
+
+<table>
+<tr><th>Opérateur</th><th>Traduction</th><th>Exemple</th><th>Résultat</th></tr>
+<tr><td><strong>&amp;</strong></td><td>ET bit à bit</td><td>x &amp; y</td><td>1 si les bits de x et y valent 1</td></tr>
+<tr><td><strong>|</strong></td><td>OU bit à bit</td><td>x | y</td><td>1 si le bit de x et/ou de y vaut 1</td></tr>
+<tr><td><strong>^</strong></td><td>XOR bit à bit</td><td>x ^ y</td><td>1 si le bit de x ou de y vaut 1</td></tr>
+<tr><td><strong>~</strong></td><td>NON bit à bit</td><td>x ~ y</td><td>1 si le bit de x est 0</td></tr>
+<tr><td><strong>&lt;&lt;</strong></td><td>décalage à gauche</td><td>x &lt;&lt; y</td><td>décale chaque bit de x de y positions vers la gauche</td></tr>
+<tr><td><strong>&gt;&gt;</strong></td><td>décalage à droite</td><td>x &gt;&gt; y</td><td>décale chaque bit de x de y positions vers la droite</td></tr>
+</table>
+
+<p>Voici quelques exemples représentatifs</p>
+
+<table>
+<tr><td colspan=2>x</td><td colspan=2>y</td><td>Opération</td><td colspan="2">Résultat</td></tr>
+<tr><td>14</td><td>1110</td><td>9</td><td>1001</td><td>x &amp; y</td><td>8</td><td>1000</td></tr>
+<tr><td>14</td><td>1110</td><td>9</td><td>1001</td><td>x | y</td><td>15</td><td>1111</td></tr>
+<tr><td>14</td><td>1110</td><td>9</td><td>1001</td><td>x ^ y</td><td>7</td><td>0111</td></tr>
+<tr><td>14</td><td>1110</td><td colspan="2"></td><td>~x</td><td>1</td><td>0001</td></tr>
+<tr><td>14</td><td>1110</td><td>2</td><td>0010</td><td>x &lt;&lt; y</td><td>56</td><td>111000</td></tr>
+<tr><td>14</td><td>1110</td><td>2</td><td>0010</td><td>x &gt;&gt; y</td><td>3</td><td>11</td></tr>
+</table>
+
+
+<h3>Les structures décisionnelles</h3>
+
+<p>Les structures décisionnelles sont des structures de controlles du flot d'exécuté qui permet d'orienté le déroulement du programme en fonction de l'évaluation du expression booléenne.</p>
+
+<h4>Instruction if </h4>
+
+<p>Cette première instruction de la famille des if permet d'exécuter une instruction ou un bloc d'instruction si une condition est remplie </p>
+
+<strong>Syntaxe</strong>
+<pre class="ScreenEditor"> 
+if ( expression ) 
+   Instruction ou Bloc d'instruction
+</pre>
+<strong>Exemple</strong>
+<pre class="ScreenEditor">
+int a = 5;
+int b = 10; 
+if (! b % a ) 
+   printf("b est un multiple de a");
+</pre>
+
+<h4>Instruction if avec alternative simple</h4>
+
+<p>Cette seconde instruction de la famille des if permet d'exécuter une instruction ou un bloc d'instruction si une condition est remplie ou une autre instruction ou bloc d'instruction sinon.</p>
+
+<strong>Syntaxe</strong>
+<pre class="ScreenEditor"> 
+if ( expression ) 
+  Instruction ou Bloc d'instruction 
+else 
+  Instruction2 ou Bloc d'instruction2
+</pre>
+<strong>Exemple</strong>
+<pre class="ScreenEditor"> 
+int a = 5;
+int b = 10;
+if ( a&gt;b ) 
+  printf("a est strictement supérieur à b); 
+else 
+  printf("b est supérieur ou égal à a); 
+</pre>
+
+<h4>Instruction if avec alternative multiple</h4>
+
+<p>Cette dernière instruction de la famille des if permet de proposer des alternatives multiples par des couplages des instructions précédentes.</p>
+
+<strong>Syntaxe</strong>
+<pre class="ScreenEditor"> 
+if ( expression ) 
+  Instruction ou Bloc d'instruction 
+else if ( expression2)
+  Instruction2 ou Bloc d'instruction2
+else ...
+</pre>
+<strong>Exemple</strong>
+<pre class="ScreenEditor"> 
+int a = 5;
+int b = 10;
+if ( a&gt;b ) 
+  printf("a est strictement supérieur à b); 
+else if (a&lt;b)
+  printf("b est strictement supérieur à a);
+else 
+  printf("a est égal à b); 
+</pre>
+
+<h4>Instruction Switch</h4>
+
+<p>L'instruction d'aiguillage switch permet de tester une variable de type entière parmis un ensemble de constantes de type entière. La définition syntaxique est la suivante: </p>
+
+<strong>Syntaxe</strong>
+<pre class="ScreenEditor"> 
+switch ( valeur_entiere ) {
+  case '2' : instruction1;
+  case 2   : instruction2; instruction3; 
+  case '5' : instruction4;break;
+  case  7 : instruction5;
+  default : instruction6;  
+} 
+</pre>
+
+<p>Cette structure est à utiliser avec précaution, car elle n'est pas débranchante. En effet, lorsque la valeur entière est égal à l'un des cas, toutes les instructions qui suivent sont executés jusqu'à rencontrer l'instruction break. Cet type de comportement induit de nombreuses erreurs aux développeurs débutants. C'est pourquoi nous déconseillons fortement l'utilisation de switch lorsqu'ils sont utilisés en substitue de structure if.</p>
+
+<p>Dans l'exemple précédent si la valeur_entiere vaut 2, les instructions 2,3,4 seront executés.</p>
+<p>Dans l'exemple précédent si la valeur_entiere vaut 5, l'instruction 6 sera executé.</p>
+<p>Dans l'exemple précédent si la valeur_entiere vaut 7, les instructions 5 et 6 seront executés.</p>
+
+<p>L'instruction default est exécuté si aucun cas n'a été levé ont si aucun break n'est présent entre le case levé et l'instruction default.</p>
+
+<h4>L'opérateur Ternaire</h4>
+
+<p>L'opérateur ternaire est une forme condensée de l'instruction if/else qui renvoi une valeur.</p>
+
+<strong>Syntaxe</strong>
+<pre class="ScreenEditor"> 
+valeur = (expression)? valeur_si_vrai : valeur_si_faux;
+</pre>
+<strong>Exemple</strong>
+<pre class="ScreenEditor"> 
+int a = 5;
+int b = 10;
+int max;
+// Avec la structure if 
+if (a&gt;b)
+ max = a;
+else
+ max = b;
+// forme condensée
+max = (a&gt;b)?a:b;
+</pre>
+
+<p>Dans de nombreux cas, l'utilisation de cet opérateur permet d'alléger la lecture du code et surtout d'éviter de déclarer inutilement des variables.</p>
+<strong>Cas d'application</strong>
+<strong>Exemple</strong>
+<pre class="ScreenEditor"> 
+int max1(int a, int b) {
+  int max;
+  if (a&gt;b) 
+    max = a;
+  else
+    max = b;
+  return max;
+}
+
+int max(int a, int b) {
+  return (a&gt;b)?a:b; 
+}
+</pre>
+
+</div>
+
+
+
+
+</div>
+<br class="Cleaner" />
+
+</div>
+</div>
+</body>
+</html>

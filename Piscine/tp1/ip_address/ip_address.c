@@ -1,0 +1,21 @@
+#include <stdlib.h>
+#include <stdio.h>
+
+int main( int argc, char**argv){
+	if(1>argc){
+		printf("Nombre de paramètres insuffisants \n");
+		return 1;
+	}
+	
+
+	/*decoupe le nombre
+	decalage d'1 octect a chaque fois, et application du masque FF
+	*/	
+	unsigned int ipT = strtoul(argv[1], NULL, 8);
+	printf("%d", ipT&0XFF);
+	printf("%d", ipT>>8&0XFF);
+	printf("%d", ipT>>16&0XFF);
+	printf("%d", ipT>>24&0XFF);
+
+	return 0;	
+} 

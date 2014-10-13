@@ -1,0 +1,3 @@
+Construire un programme permettant de lister sur la console le contenu d'un fichier : chaque octet devra être affiché soit sous forme caractère, soit sous forme hexadécimale, soit sous forme décimale et les valeurs seront séparées par des espaces. Par exemple, si le fichier "exemple.bin" contient les caractères "abc", le programme devra afficher "61 62 63" en hexadécimal, "97 98 99" en décimal et "abc" en caractère. En mode caractère, seules les lettres devront être affichées.
+
+Le nom du fichier, ainsi que le mode d'affichage (1 pour hexadécimal, 2 pour décimal et 3 pour caractère) seront transmis en arguments de la ligne de commande. En cas d'erreur, le programme affichera "I" pour invalide. 

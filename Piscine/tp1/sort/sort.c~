@@ -1,0 +1,19 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main( int argc, char**argv){
+	if(2>argc){
+		printf("Nombre de paramètres insuffisants \n");
+		return 1;
+	}
+
+	int val1 = atoi(argc[1]);
+	int val2 = atoi(argc[2]);
+	int val3 = atoi(argc[3]);
+
+	/*
+	test si val et sup a val2 et val3?   val en troisieme position: val en premier position
+	test si val2 et sup a val?   val en premiere position: null
+	test si val2 et sup a val3?  val2 en troisieme: null
+	*/
+}

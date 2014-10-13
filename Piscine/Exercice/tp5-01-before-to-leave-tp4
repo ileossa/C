@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="html" xmlns="http://www.w3.org/1999/xhtml">
+
+<head id="head" >
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>
+ TP5. Ex1. Listes chaines, fonctions utilitaires
+</title>
+
+<meta name="keywords" content=""/>
+<meta name="description" content=""/>
+<link href="http://10.34.128.10:8181/res/styles/default/style.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/node.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/tutorial.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/menu.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/context-menu.css" rel="stylesheet" type="text/css"/><script src="http://10.34.128.10:8181/res/js/prototype.js"></script><script src="http://10.34.128.10:8181/res/js/scriptaculous.js"></script><script src="http://10.34.128.10:8181/res/js/essilab.js"></script>
+
+
+</head>
+<body id="body" >
+
+<div id="container" >
+
+<div id="headerWrapper" >
+
+<div id="header" >
+
+
+
+
+
+
+
+<div id="menuGlobal" class="Menu ">
+	<ul>
+								
+	<li class="MenuItem">
+		<a href="http://10.34.128.10:8181/cours">Support de cours</a>
+			</li>
+								
+	<li class="MenuItem">
+		<a href="http://10.34.128.10:8181/exercises">Exercices</a>
+			</li>
+								
+	<li class="MenuItem">
+		<a href="http://10.34.128.10:8181/student/_points">Résultats</a>
+			</li>
+			</ul>
+</div>
+
+</div>
+</div>
+<div id="content" >
+
+<div class="ContentPane" >
+
+
+
+<div class="Tutorial">
+<h1>TP5. Ex1. Nostalgie des tp 3 et 4 ? : str_replace is back! </h1>
+<table>
+<tr><td>Temps de référence</td><td>45 mn</td></tr>
+<tr><td>Temps estimé</td><td>1h23 mn</td></tr>
+<tr><td>Temps max</td><td>2h34 mn</td></tr>
+<tr><td>Répertoire de rendu</td><td>~/seminaire/tp5/str_replace</td></tr>
+<tr><td>Fichier(s) de rendu</td><td>str_replace.c</td></tr>
+</table>
+
+<h2>Enoncé</h2>
+
+<p>Écrire une fonction qui permette remplacer un motif par un substitut à l'intérieur d'un chaîne principale.
+</p>
+<p>
+Vous réaliserez également le programme qui permette de tester la fonction, en prenant en paramètres une chaine, un motif, un substitut.
+</p>
+<br/>
+<strong>Le prototype de la fonction à réaliser est le suivant:
+</strong>
+
+<pre class="ScreenEditor">
+ /*
+ ** input, the String where to make the replacement's.
+ ** pattern, the String pattern to replace.
+ ** replacement, the String replacement for the pattern's occurrences.
+ */
+ char* replace(const char* input, char* pattern, char* replacement);
+</pre>
+
+<h2>Exemple de résulat(s) attendu(s)</h2>
+
+<pre class="ScreenConsole">
+./monProgramme  "&lt;div&gt;Un beau paragraphe&lt;/div&gt;" "div" "p"
+&lt;p&gt;Un beau paragraphe&lt;/p&gt;
+
+./monProgramme "Zeus a" "eu"
+Nombre de paramètres insuffisants
+</pre>
+
+<h2>Travail attendu</h2>
+<ol>
+  <li>Dans le répertoire 'tp5', créer un sous répertoire 'str_replace'</li>
+  <li>Créer le fichier str_replace.c</li>
+  <li>Implémenter le programme dans le fichier c adéquate</li>
+  <li>Les compiler, corriger les erreurs si besoin.</li>
+  <li>Les copier dans leur répertoire de rendu.</li>
+</ol>
+
+</div>
+
+</div>
+<br class="Cleaner" />
+
+</div>
+</div>
+</body>
+</html>

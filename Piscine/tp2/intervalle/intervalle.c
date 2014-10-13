@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main( int argc, char**argv){
+	if(2>argc){
+		printf("le nombre de parametres insuffisant \n");
+		return 1;
+	}
+	
+	int val1 = atoi(argv[1]);
+	int val2 = atoi(argv[2]);
+	
+	//croissant
+	if(val1 < val2){
+		do{
+			printf("%d ", val1);
+			val1++;
+		}while(val1<val2);
+		printf("%i\n", val2);
+	}
+	//Decroissant
+	if(val1 > val2){
+		do{
+			printf("%d ", val1);
+			val1--;
+		}while(val1>val2);
+		printf("%i\n", val2);
+	}
+	return 0;
+}

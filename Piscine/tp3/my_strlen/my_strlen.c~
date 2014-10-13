@@ -1,0 +1,22 @@
+#include <stdio.h>
+
+int length(char* tab){
+	int i = 0;
+	while( tab[i] !='\0' ){
+		i++;
+	}
+	return i;
+}
+
+
+int main( int argc, char** argv){
+	if(2 > argc){
+		printf("Nombre de paramètres insuffisants\n");
+		return 1;
+	}
+	
+	printf("%i", length(argv[1]) );
+
+
+return 0;
+}

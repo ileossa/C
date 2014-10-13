@@ -1,0 +1,779 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="html" xmlns="http://www.w3.org/1999/xhtml">
+
+<head id="head" >
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>
+ Le langage C - Les types dérivés, les pointeurs
+</title>
+
+<meta name="keywords" content=""/>
+<meta name="description" content=""/>
+<link href="http://10.34.128.10:8181/res/styles/default/style.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/node.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/tutorial.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/menu.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/context-menu.css" rel="stylesheet" type="text/css"/><script src="http://10.34.128.10:8181/res/js/prototype.js"></script><script src="http://10.34.128.10:8181/res/js/scriptaculous.js"></script><script src="http://10.34.128.10:8181/res/js/essilab.js"></script>
+
+
+</head>
+<body id="body" >
+
+<div id="container" >
+
+<div id="headerWrapper" >
+
+<div id="header" >
+
+
+
+
+
+
+
+<div id="menuGlobal" class="Menu ">
+	<ul>
+								
+	<li class="MenuItem">
+		<a href="http://10.34.128.10:8181/cours">Support de cours</a>
+			</li>
+								
+	<li class="MenuItem">
+		<a href="http://10.34.128.10:8181/exercises">Exercices</a>
+			</li>
+								
+	<li class="MenuItem">
+		<a href="http://10.34.128.10:8181/student/_points">Résultats</a>
+			</li>
+			</ul>
+</div>
+
+</div>
+</div>
+<div id="content" >
+
+<div class="ContentPane" >
+
+
+<div class="Tutorial">
+<h2>Les pointeurs</h2>
+
+<p>
+Toute variable manipulée dans un programme est stockée quelque part en mémoire
+centrale. Cette mémoire est constituée d’octets qui sont identifiés de
+manière univoque par un numéro qu’on appelle adresse comme l’illustre la figure
+suivante
+</p>
+
+<img src="http://10.34.128.10:8181/img/pointeurs.png"/>
+
+<p>
+Par analogie, on peut voir la mémoire centrale comme une armoire constituée
+de tiroirs numérotés. Un numéro de tiroir correspond à une adresse.
+</p>
+<p>
+Ainsi, lorsqu’on déclare une variable var de type T, l’ordinateur réserve un
+espace mémoire (de sizeof(T) octets) pour y stocker les valeurs de var.
+</p>
+
+<p>
+Pour retrouver cette variable, il suffit donc de connaître l’adresse du premier
+octet où elle est stockée (ou, s’il s’agit d’une variable qui recouvre plusieurs
+octets contigus, l’adresse du premier de ces octets).
+</p>
+
+<strong>Un pointeur est une variable de type adresse.</strong>
+
+<p>Les pointeurs présentent de nombreux avantages :</p>
+<ul>
+<li>
+<strong>Ils permettent de manipuler de façon simple des données de taille importante</strong>
+(comme les tableaux, les structures etc...). Ainsi, au lieu de passer en paramètre à une fonction un élément très grand (en taille), on pourra se contenter
+de lui fournir un pointeur vers cet élément... On gagne évidemment alors en
+efficacité dans l’exécution du programme.
+</li>
+<li>
+<strong>Il est possible de créer des structures chaînées (on dit aussi structures autoréférées) qui sont utilisées pour définir des listes chainées.</strong>
+<p>De telles listes sont beaucoup utilisées en programmation (le nombre d’éléments de cette liste
+peut évoluer dynamiquement, ce qui permet une utilisation plus souple que celle des tableaux).
+</p>
+</li>
+</ul>
+
+<h3>Déclaration d'un pointeur</h3>
+<p>
+En C, chaque pointeur est limité à un type de donnée. En effet, même si la
+valeur d’un pointeur (une adresse) est toujours un entier (ou éventuellement
+un entier long), le type d’un pointeur dépend du type de l’objet pointé. Cette
+distinction est indispensable `a l’interprétation (en fait la taille) de la valeur
+pointée.
+</p>
+
+<p>On déclare un pointeur par l’instruction :</p>
+
+<pre class="ScreenEditor">
+type *nom-du-pointeur ;
+</pre>
+
+<p>où type est le type de l’objet pointé. </p>
+
+<p>Exemple :</p>
+
+<pre class="ScreenEditor">
+  int *pi; // pi est un pointeur vers un int
+  short int *psi; // psi est un pointeur vers un short int
+  char *pc; // pc pointeur vers un char
+</pre>
+
+<p>
+A noter aussi l’existence de <strong>pointeurs génériques</strong>, c’est à dire capable de pointer
+vers n’importe quel type d’objet. On utilise pour cela le type <strong>void *</strong>.
+</p>
+
+<p>
+Sans un tel type, il ne serait pas possible par exemple d’indiquer le type d’objet
+rendu par les fonctions d’allocation de mémoire qui rendent un pointeur vers
+l’objet alloué, puisque ce type varie d’une invocation à l’autre de la fonction.
+</p>
+
+<p>
+Par exemple, la fonction malloc de la bibliothèque standard est définie de la
+manière suivante : 
+</p>
+
+<pre class="ScreenEditor">
+void *malloc(size_t size);
+</pre>
+
+<h3>Opérateurs de manipulation des pointeurs</h3>
+
+<p>Lors du travail avec des pointeurs, nous avons besoin :</p>
+<ul>
+<li>d’un opérateur d'adresse de  <strong>&amp;</strong> pour obtenir l’adresse d’une variable.
+</li>
+<li>d’un opérateur contenu <strong>*</strong> pour accéder au contenu d’une adresse.
+</li>
+</ul>
+
+<h4>L'opérateur d'addresse <strong>&amp;</strong></h4>
+
+<p>L’opérateur &amp; permet d’accéder à l’adresse d’une variable. La syntaxe est la
+suivante :</p>
+
+<p>Cette adresse peut alors être utilisée pour initialiser la valeur d’un pointeur.</p>
+
+<p>Dans l’exemple suivant, on d´efinit un pointeur p qui pointe vers un entier i :</p>
+
+<pre class="ScreenEditor">
+int * p; //´etape (1): pointeur vers un entier non initialis´e
+int i = 14; //´etape (2): variable enti`ere initialis´ee a 14
+p=&amp;i; //´etape (3): p pointe vers i
+</pre>
+
+<p>Les différentes étapes de ce scénario sont illustrées dans la figure suivante :</p>
+
+<img src="http://10.34.128.10:8181/img/pointeurs_address.png"/>
+
+<p>
+L’opérateur &amp; peut seulement être appliqué à des objets qui se trouvent dans
+la mémoire interne, c’est à dire à des variables et des tableaux. Il ne peut pas
+être appliqué à des constantes ou des expressions.
+</p>
+
+<h4>L'opérateur de contenu <strong>*</strong></h4>
+
+<p>L’opérateur unaire d’indirection * permet d’accéder directement à la valeur de
+l’objet pointé (on dit qu’<strong>on déréférence un pointeur</strong>). 
+</p>
+<p>La syntaxe est la suivante :</p>
+
+<pre class="ScreenEditor">
+*nom-pointeur
+</pre>
+
+<p>Ainsi, si p est un pointeur vers un entier i, *p d´esigne la valeur de i. Exemple :</p>
+
+<pre class="ScreenEditor">
+int main(int argc, char** argv) {
+  int i = 14;
+  int *p;
+  p = &amp;i; //p contient l’adresse de i (0x352C)
+  printf("*p = %d \n",*p); //affiche "*p = 14"
+}
+</pre>
+
+<p>Pour résumer, après les instructions précédentes :</p>
+<ul>
+<li>i désigne le contenu de i (soit 14)</li>
+<li>&amp;i désigne l’adresse de i (soit 0x352C)</li>
+<li>p désigne l’adresse de i (soit 0x352C)</li>
+<li>*p désigne le contenu de i (soit 14)</li>
+<li>&amp;p désigne l’adresse de p (soit 0x1A30)</li>
+</ul>
+
+<h3>Initialisation d'un pointeur</h3>
+
+<p>
+Par défaut, lorsque l’on déclare un pointeur p sur un objet de type T, on ne
+sait pas sur quoi il pointe. En effet, la case mémoire qu’il occupe contient une
+certaine valeur qui risque de le faire pointer vers une zone hasardeuse de la
+mémoire.
+</p>
+
+<strong>Comme toute variable, un pointeur doit être initialisé !</strong>
+
+<p>Cette initialisation peut s’effectuer de trois façons :</p>
+
+<ul>
+<li>
+  <strong>Affectation à l’adresse d’une autre variable de p</strong>. 
+  <p>Si la variable est un pointeur,on peut faire l’affectation directement, sinon on doit utiliser l’opérateur &amp;</p>
+  <p>Exemple :</p>
+
+  <pre class="ScreenEditor">
+    int *p1, *p2;//d´eclaration de 2 pointeurs vers des entiers
+    int i = 14; //supposons que i se trouve `a l’adresse 0x352C
+    p1 = &amp;i; //affectation `a l’adresse de i de p1 , soit 0x352C
+    p2 = p1; //affectation de p2 `a p1:
+    //p2 contient aussi l’adresse de i
+  </pre>
+</li>
+<li>
+  <strong>affectation de p à la valeur NULL</strong>
+  <p>on peut dire qu’un pointeur ne pointe
+  sur rien en lui affectant la valeur NULL (cette valeur est d´efinie dans le fichier stddef.h).</p>
+<p> Exemple :</p>
+
+<pre class="ScreenEditor">
+int * p = NULL;
+</pre>
+</li>
+<li>
+  <strong>affectation directe de *p</strong> (la zone mémoire pointée par p). 
+  <p>Pour cela, il faut d’abord réserver à *p un espace-m´emoire de taille adéquate (celui du type
+pointé par p, soit sizeof(T) octets).</p>
+<p> L’adresse de cet espace-mémoire sera la valeur de p. (abordé ci-après)
+</p>
+</li>
+</ul>
+<p>
+Pour bien montrer l’intérêt de l’initialisation de tout pointeur, reprenons l’exemple
+précédent dans lequel on remplace l’affectation p2 = p1 par *p2 = *p1 :
+</p>
+<pre class="ScreenEditor">
+int * p1, *p2;
+int i = 14;
+p1 = &amp;i;
+*p2 = *p1;
+</pre>
+
+<p>Que se passe t-il ?</p>
+
+<ul>
+<li>p1 est bien initialisé et pointe sur i (*p1=14)</li>
+<li>mais p2 n’a pas été initialisé : *p2 désigne une adresse mémoire a priori inconnue.
+L’instruction *p2 = *p1 force l’´ecriture de la valeur *p1=14 dans
+la case mémoire pointée par p2 ce qui pourrait avoir des conséquences désastreuses
+! Cette ecriture est en gén2ral sanctionné par le message d’erreur
+”Segmentation fault” à l’exécution.</li>
+</ul>
+
+<h4>Initialisation d'un pointeur</h4>
+
+<p>La valeur d’un pointeur étant un entier, on peut lui appliquer un certain nombre
+d’opérateurs arithmétiques classiques. Les seules opérations arithmétiques valides
+sur les pointeurs sont :</p>
+<ul>
+  <li>
+    <strong>l’addition d’un entier à un pointeur *( p + i )</strong>
+    Le résultat est un pointeur de même type que le pointeur de départ.</li>
+  <li><strong>la soustraction d’un entier à un pointeur</strong> *( p – i)
+    Le résultat est un pointeur de même type que le pointeur de départ.</li>
+    <li><strong>la différence de deux pointeurs len = p1 – p2</strong>
+    Il faut absolument que les deux pointeurs pointent vers des objets de même
+    type T. Le résultat est un entier dont la valeur est égale à (p1 - p2)/sizeof(T).</li>
+</ul>
+
+<p><strong>Attention</strong> : la somme de deux pointeurs n’est pas autorisée !</p>
+
+
+<p>
+Ainsi, soit i un entier et p un pointeur sur un objet de type T (donc déclaré
+par l’instruction : T *p ;). 
+</p>
+<p>
+Alors p+i (respectivement p-i) d´esigne un pointeur sur un objet de type T. 
+Sa valeur est égale à celle de p incrementee
+(respectivement d´ecrementee) de i*sizeof(T). Exemple :
+</p>
+
+<pre class="ScreenEditor">
+#include &lt;stdio.h&gt;
+int main() {
+  int i = 2;
+  int *p1, *p2;
+  p1 = &amp;i;
+  p2 = p1 + 1;
+  printf("Adresse p1 = Ox%lx \t Adresse p2 = 0x%lx\n",
+  (unsigned long)p1,
+  (unsigned long)p2);
+  printf("Diff´erence des adresses: %lu \t sizeof(int)=%u\n",
+  (unsigned long)p2-(unsigned long)p1,
+  sizeof(int));
+  printf("MAIS p2-p1 = %i !\n",p2-p1);
+  return 0;
+}
+</pre>
+
+<pre class="ScreenConsole">
+Adresse p1 = Oxbffffb24 Adresse p2 = 0xbffffb28
+Difference des adresses: 4 sizeof(int)=4
+MAIS p2-p1 = 1 !
+</pre>
+
+<p>
+On peut faire la mˆeme exp´erience avec le type double (au lieu du type int).
+On obtiendrait alors :
+</p>
+
+<pre class="ScreenConsole">
+Adresse p1 = Oxbffffb20 Adresse p2 = 0xbffffb28
+Difference des adresses: 8 sizeof(double)=8
+MAIS p2-p1 = 1 !
+</pre>
+
+<p>
+A noter qu’on peut également utiliser les opérateurs ++ et -- avec des pointeurs.
+En général, on les utilise pour réaliser des parcours de tableaux et plus
+particulièrement dans les chaînes de caractères.
+</p>
+
+<pre class="ScreenEditor">
+#include &lt;stdio.h&gt;
+int main() {
+  char * mess = "On est super content!";
+  char *p;
+  for (p = &amp;mess[0]; *p != ’\0’; p++) {
+    printf("Adresse: %ld | Contenu: %c\n",(long)p,*p);
+  }
+  // Autre m´ethode classique, avec while
+  p = mess; // ´equivalent de p = &amp;mess[0] dans ce cas
+  while (*p != ’\0’) {
+    printf("Adresse: %ld | Contenu: %c\n",(long)p,*p);
+    p++;
+  }
+  return (0);
+}
+</pre>
+
+<h3>Allocation de la mémoire</h3>
+
+<p>
+Nous avons vu que l’utilisation de pointeurs permet de mémoriser économiquement
+des donn´ees de différentes grandeurs (puisqu’on se contente de mémoriser
+l’adresse de ces données). 
+</p>
+<p>
+Pour permettre une utilisation efficace de la mémoire,
+il est primordial de disposer de moyens pour réserver et libérer de la mémoire
+dynamiquement au fur et à mesure de l’exécution. </p>
+<p>
+C’est ce qu’on appelle une allocation dynamique de la mémoire. Les fonctions pour la gestion dynamique
+de la mémoire sont déclarées dans le fichier stdlib.h
+</p>
+
+L’opération consistant à réserver un espace-mémoire est réalisé par la fonction
+malloc. Sa syntaxe est :
+
+<pre class="ScreenEditor">
+malloc(nb octets)
+</pre>
+
+<p>
+Cette fonction retourne un pointeur de type char * pointant vers une zone
+m´emoire de nb octets octets. Pour initialiser des pointeurs vers des objets qui
+ne sont pas de type char, il faut convertir le type de la sortie de la fonction
+malloc `a l’aide d’un cast.
+</p>
+
+<p>
+A noter enfin qu’en pratique, on utilise la fonction sizeof() pour déterminer
+la valeur nb octets. Ainsi, pour initialiser un pointeur vers un entier, on ´ecrit :
+</p>
+
+<pre class="ScreenEditor">
+#include &lt;stdlib.h&gt;
+int main() {
+  int *p;
+  p = (int*)malloc(sizeof(int)); // allocation dynamique
+  *p = 14;
+}
+</pre>
+<p>
+Il est primordial de bien comprendre qu’avant l’allocation dynamique (et
+plus g´en´eralement avant toute initialisation de p), *p n’a aucun sens !
+</p>
+<p>
+En particulier, toute manipulation de la variable *p g´en´ererait en g´en´eral une
+violation m´emoire, d´etectable `a l’ex´ecution par le message d’erreur Segmentation
+fault.
+</p>
+
+<p>
+La fonction malloc permet ´egalement d’allouer un espace pour plusieurs objets
+contigus en m´emoire. On peut ´ecrire par exemple
+</p>
+
+
+
+<pre class="ScreenEditor">
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+int main(int argc, char** argv) {
+  int *p;
+  p = (int*)malloc(2 * sizeof(int)); //allocation pour 2 int
+  *p = 14;
+  *(p + 1) = 10;
+  printf("p = Ox%lx \t *p = %i \t p+1 = 0x%lx \t *(p+1)=%i\n",
+  (unsigned long)p, *p, (unsigned long)(p+1), *(p+1));
+  return 0;
+}
+</pre>
+<p>
+L’appel à la fonction malloc a ainsi permis de réserver 8 octets en mémoire
+(qui permettent de stocker 2 objets de type int) et d’affecter à p l’adresse de
+cette zone mémoire. Le programme affiche :
+</p>
+<pre class="ScreenConsole">
+p = Ox8049718 *p = 14 p+1 = 0x804971c *(p+1)=10.
+</pre>
+
+<p>
+La fonction calloc a le mˆeme rˆole que la fonction malloc mais elle permet
+de r´eserver nb-objets objets de nb octets octets et de les initialiser `a z´ero. Sa
+syntaxe est :
+</p>
+
+<pre class="ScreenEditor">
+calloc(nb-objets,nb octets)
+</pre>
+
+<p>Ainsi, si p est de type int*, l’instruction</p>
+
+<pre class="ScreenEditor">
+p = (int*)calloc(N,sizeof(int));
+</pre>
+
+<p>est sémantiquement équivalente à</p>
+
+<pre class="ScreenEditor">
+p = (int*)malloc(N * sizeof(int));
+for (i = 0; i &lt; N; i++)
+*(p + i) = 0;
+</pre>
+
+<p>L’emploi de calloc est simplement plus pratique et plus rapide.</p>
+
+<h3>Libération dynamique avec la fonction free</h3>
+
+<p>
+Lorsque l’on n’a plus besoin de l’espace-m´emoire alloué dynamiquement par
+malloc ou calloc (c’est-`a-dire quand on n’utilise plus le pointeur p initialisé
+par ces fontions), il faut libérer ce bloc de mémoire. Ceci se fait à l’aide de
+l’instruction free qui a pour syntaxe :
+</p>
+
+<pre class="ScreenEditor">
+free(nom-du-pointeur);
+</pre>
+<p>
+Cette instruction libère le bloc de mémoire désigné par nom-du-pointeur mais
+n’a pas d’effet si le pointeur a la valeur NULL.</p>
+<p>
+A toute instruction de type malloc ou calloc doit être associée une instruction
+de type free.
+</p>
+
+<strong>Remarques</strong>
+
+<ul>
+  <li>
+    La fonction free peut aboutir `a un d´esastre si on essaie de lib´erer de la mémoire qui n’a pas été allouée par malloc ou calloc.
+  </li>
+  <li>free ne change pas le contenu du pointeur.</li>
+  <li>Si la mémoire n’est pas libérée à l’aide de free, il y aura des fuites mémoires au cours de l'execution du programme. Elle sera néanmoins automatiquement libérée à la fin du programme.</li>
+</ul>
+
+<h2>Relation entre tableaux et pointeurs</h2>
+
+
+<h3>Pointeurs et tableaux à une dimension</h3>
+<p>
+On rappelle que tout tableau en C est en fait un pointeur constant.
+Ainsi, la déclaration int tab[10]; définit un tableau de 10 valeurs entières dont
+les indices varient entre les valeurs 0 et 9 et tab est un pointeur constant
+(non modifiable) dont la valeur est l’adresse du premier élément du tableau.
+</p>
+<p>
+Autrement dit, tab a pour valeur &amp;tab[0]. On peut donc utiliser un pointeur
+initialisé à tab pour parcourir les éléments du tableau, comme dans l’exemple
+suivant :
+</p>
+
+<pre class="ScreenEditor">
+#define N 5
+int tab[5] = {1, 2, 6, 0, 7};
+int main(int argc, char** argv) {
+  int i;
+  int *p;
+  p = tab;
+  for (i = 0; i &lt; N; i++, p++)
+    printf(" %d \n",*p);
+  return 0;
+}
+</pre>
+
+<p>
+Comme on accède à l’élément d’indice i du tableau tab grâce à l’opérateur
+d’indexation [] par l’expression tab[i], on peut d´eduire la relation entre cet
+opérateur d’indexation et l’opérateur * :
+</p>
+
+<pre class="ScreenEditor">
+tab[i] = *(tab + i)
+</pre>
+
+<p>Pour résumer, on a les équivalences suivantes :</p>
+<ul>
+<li>tab + 1 ⇐⇒ &amp;(tab[1]) (adresse du 2i`eme ´el´ement)</li>
+<li>*(tab + 1) ⇐⇒ tab[1] (valeur du 2i`eme ´el´ement)</li>
+<li>*tab ⇐⇒ tab[0] (valeur du 1er ´el´ement)</li>
+<li>*(tab + k) ⇐⇒ tab[k] (valeur du (k+1)`eme ´el´ement)</li>
+<li>tab + k ⇐⇒ &amp;(tab[k]) (adresse du (k+1)`eme ´el´ement)</li>
+</ul>
+
+<p>
+Pointeurs et tableaux se manipulent donc exactement de même manière.</p>
+
+<p><strong>Attention</strong> 
+cependant puisqu’aucun contrôle n’est effectué pour s’assurer que l’élément
+du tableau adresse existe effectivement.</p>
+<p> En outre, la manipulation de tableaux
+possède certains inconvénients par rapport à la manipulation des pointeurs dûs
+au fait qu’un tableau est un pointeur constant :
+</p>
+
+<ul>
+<li>On ne peut pas créer de tableaux dont la taille est une variable du programme</li>
+<li>on ne peut pas créer de tableaux bidimensionnels dont les lignes n’ont pas
+toutes le même nombre d’éléments</li>
+</ul>
+
+<p>
+Ces opérations deviennent possibles dès que l’on manipule des pointeurs alloués
+dynamiquement.</p>
+<p> 
+Ainsi, pour créer un tableau d’entiers à n éléments où n est
+une variable du programme, on écrit :
+</p>
+
+<pre class="ScreenEditor">
+#include &lt;stdlib.h&gt;
+int main(int argc, char** argv) {
+  int n;
+  int *tab;
+  ...
+  tab = (int*)malloc(n * sizeof(int));
+  ...
+  free(tab);
+}
+</pre>
+
+<p>
+Si on veut en plus que tous les éléments du tableau tab soient initialisés à 0, on
+remplace l’allocation dynamique avec malloc par :
+</p>
+
+<pre class="ScreenEditor">
+tab = (int*)calloc(n, sizeof(int));
+</pre>
+
+<p>On pourra aussi utiliser la fonction memset.
+</p>
+<p>
+Les éléments de tab sont manipulés avec l’opérateur d’indexation [], exactement
+comme pour les tableaux.
+</p>
+
+<strong>
+Pour conclure, on retiendra que les deux principales difféerence entre un tableau
+et un pointeur sont les suivantes :
+</strong>
+<ul>
+<li>un pointeur doit toujours être initialisé, soit par une allocation dynamique,
+soit par affectation à une expression de type adresse, par exemple  ;
+<pre class="ScreenEditor">
+int  i = 0;
+int* p = &amp;i;
+</pre>
+</li>
+  <li>
+    un tableau est un pointeur constant, il ne peut donc pas figurer à gauche d’un
+    opérateur d’affectation. En particulier, un tableau ne pas être utilisé directement
+    dans une expression arithmétique (on ne peut pas écrire tab++ ; par exemple).
+  </li>
+</ul>
+
+<h3>Pointeurs et tableaux `a plusieurs dimensions</h3>
+
+<p>Un tableau à deux dimensions peut être vu de deux façons :</p>
+
+<ul>
+<li>
+<p>
+soit comme un pointeur sur une zone m´emoire de taille le produit des deux
+dimensions, comme c’est le cas dans l’´ecriture :
+</p>
+
+<pre class="ScreenEditor">
+int tab[L][C];
+</pre>
+<p>
+Avec cette écriture, tab a une valeur constante égale à l’adresse du premier
+élément du tableau, c’est à dire &amp;tab[0][0].
+</p>
+</li>
+<li>
+<p>
+soit comme un tableau de pointeurs. Chaque élément du tableau est alors lui 
+même un pointeur sur un tableau. On déclare un pointeur qui pointe sur un
+objet de type type * (deux dimensions) de la même manière qu’un pointeur,
+c’est-à-dire par la d´eclaration :
+</p>
+<pre class="ScreenEditor">
+type **nom-du-pointeur;
+</pre>
+<p>
+De même un pointeur qui pointe sur un objet de type type ** (équivalent à
+un tableau à 3 dimensions) se déclare par
+</p>
+<pre class="ScreenEditor">
+type ***nom-du-pointeur;
+</pre>
+</li>
+</ul>
+
+<p>
+L’exemple suivant illustre la déclaration d’un tableau à deux dimensions (une
+matrice de k lignes et n colonnes à coefficients entiers) sous forme d’un tableau
+de pointeurs :
+</p>
+
+<pre class="ScreenEditor">
+int main(int argc, char** argv) {
+  int k=14, n=5;
+  int **tab; // pointeur vers la matrice
+  tab = (int**)malloc(k * sizeof(int*));
+  for (i = 0; i &lt; k; i++)
+    tab[i] = (int*)malloc(n * sizeof(int));
+  ....
+  for (i = 0; i &lt; k; i++)
+    free(tab[i]);
+  free(tab);
+  return 0;
+}
+</pre>
+
+<p>
+La première allocation dynamique réserve pour l’objet pointé par tab l’espace memoire correspondant à k pointeurs sur des entiers. 
+</p>
+
+<p>
+Ces k pointeurs correspondent aux lignes de la matrice. Les allocations dynamiques suivantes réservent
+pour chaque pointeur tab[i] l’espace-m´emoire n´ecessaire pour stocker n entiers.
+</p>
+
+<p>
+Si on d´esire en plus que tous les éléments du tableau soient initialisés à 0, il
+suffit d’utiliser la fonction calloc au lieu de malloc.
+</p>
+
+<p>
+L’un des avantages des pointeurs de pointeurs sur les tableaux multi-dimensionnés
+est que cela permet de choisir par exemple des tailles différentes pour chacune
+des lignes tab[i].
+</p>
+
+<h2>Pointeur vers une structure</h2>
+<p>
+on d´eclarera une variable de
+type pointeur vers cette structure de la mani`ere suivante :
+</p>
+<pre class="ScreenEditor">
+struct personne *p;
+</pre>
+
+<p>On peut affecter `a ce pointeur des adresses sur des struct personne. Exemple :</p>
+
+<pre class="ScreenEditor">
+struct personne {...};
+int main(itn argc, char** argv) {
+  struct personne pers; // pers = variable de type struct personne
+  struct personne * p; // p = pointeur vers une struct personne
+  p = &amp;pers ; // p pointe maintenant vers pers
+}
+</pre>
+
+<p>Pour accéder aux membres de la structure pointée :</p>
+<ul>
+  <li>il faudrait ´ecrire normalement (*p).nom4</li>
+  <li> mais on utilise en pratique l’´ecriture simplifi´ee p-&gt;nom.</li>
+</ul>
+
+<h2>Structures auto-référencés (listes chaînées)</h2>
+
+<p>
+Il s’agit de cas particulier de structures dont un des membres pointe vers
+une structure du même type. Cette représentation permet en particulier de
+construire des listes chaînées.
+</p>
+<p>
+En effet, il est possible de repr´esenter une liste d’éléments de même type par un
+tableau (ou un pointeur). Toutefois, cette représentation, dite contiguë, impose
+que la taille maximale de la liste soit connue a priori (on a besoin du nombre
+d’´el´ements du tableau lors de l’allocation dynamique).
+</p>
+<p>
+Pour résoudre ce problème, on utilise une représentation chaînée : l’élément de base de la chaêne
+est une structure appelée maillon qui contient la valeur d’un élément de la liste
+et un pointeur sur l’élément suivant. </p>
+<p>
+Le dernier élément pointe sur le pointeur NULL (défini dans stddef.h). 
+La liste est alors d´efinie comme un pointeur sur
+le premier élément de la chaînée.
+</p>
+
+<p>Considérons par exemple la structure maillon possédant 2 champs :</p>
+<ul>
+  <li>un champ data de type int ;</li>
+  <li>un champ next de type pointeur vers une struct maillon.</li>
+</ul>
+<p>
+La liste est alors un objet de type pointeur sur une struct toto. Grâce au
+mot-clef typedef, on peut définir le type liste, synonyme du type pointeur
+sur une struct maillon.
+</p>
+<p>
+On peut alors définir un objet liste l qu’il
+convient d’initialiser à NULL. 
+</p> 
+<p>
+Cette représentation est illustrée dans la figure suivante.
+</p>
+
+<img src="http://10.34.128.10:8181/img/liste_chainees.png"/>
+
+</div>
+</div>
+<br class="Cleaner" />
+
+</div>
+</div>
+</body>
+</html>

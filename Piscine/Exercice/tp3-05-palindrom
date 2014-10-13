@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="html" xmlns="http://www.w3.org/1999/xhtml">
+
+<head id="head" >
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>
+ TP3. Ex5. Palindrome
+</title>
+
+<meta name="keywords" content=""/>
+<meta name="description" content=""/>
+<link href="http://10.34.128.10:8181/res/styles/default/style.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/node.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/tutorial.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/menu.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/context-menu.css" rel="stylesheet" type="text/css"/><script src="http://10.34.128.10:8181/res/js/prototype.js"></script><script src="http://10.34.128.10:8181/res/js/scriptaculous.js"></script><script src="http://10.34.128.10:8181/res/js/essilab.js"></script>
+
+
+</head>
+<body id="body" >
+
+<div id="container" >
+
+<div id="headerWrapper" >
+
+<div id="header" >
+
+
+
+
+
+
+
+<div id="menuGlobal" class="Menu ">
+	<ul>
+								
+	<li class="MenuItem">
+		<a href="http://10.34.128.10:8181/cours">Support de cours</a>
+			</li>
+								
+	<li class="MenuItem">
+		<a href="http://10.34.128.10:8181/exercises">Exercices</a>
+			</li>
+								
+	<li class="MenuItem">
+		<a href="http://10.34.128.10:8181/student/_points">Résultats</a>
+			</li>
+			</ul>
+</div>
+
+</div>
+</div>
+<div id="content" >
+
+<div class="ContentPane" >
+
+
+
+<div class="Tutorial">
+<h1>TP3. Ex5. Palindrome</h1>
+<table>
+<tr><td>Temps de référence</td><td>15 mn</td></tr>
+<tr><td>Temps estimé</td><td>30 mn</td></tr>
+<tr><td>Temps max</td><td>45 mn</td></tr>
+<tr><td>Répertoire de rendu</td><td>~/seminaire/tp3/palindrom</td></tr>
+<tr><td>Fichier(s) de rendu</td><td>palindrom.c</td></tr>
+</table>
+
+<h2>Enoncé</h2>
+<p>Réaliser une fonction qui détermine si les caractères fournis en paramètre forme un palindrome. Cette fonction devra être interfacée par un programme qui transmettra la chaine fourni en ligne de commande à la fonction et affichera le résultat.
+Rappel
+</p>
+<p>
+Un palindrome est une figure de style appelée aussi palindrome de lettres, c'est-à-dire un texte ou un mot dont l'ordre des symboles (lettres, chiffres,...) reste le même qu'on le lise de gauche à droite ou de droite à gauche comme dans l'expression « Ésope reste ici et se repose. ». 
+</p>
+<p>
+La chaine d'entrée ne doit pas être modifiée, vous pourrez créer un chaîne statique à l'aide d'un tableau si besoin.
+</p>
+
+<p>Le prototype de la fonction à réaliser est le suivant:</p>
+<pre class="ScreenEditor">
+ /*
+ ** input : the string to analyse
+ ** return 0 if false, 1 if true.
+ */
+ short is_palindrome(char* input);
+</pre>
+
+
+<h2>Exemple de résulat(s) attendu(s)</h2>
+
+<pre class="ScreenConsole">
+./monProgramme  "Zeus a ete a Suez"
+1
+./monProgramme "Engage le jeu que je le gagne"
+1
+./monProgramme "Et la marine va venir a Malte"
+1
+./monProgramme "Dernier arrive, premier parti"
+0
+./monProgramme "Premier arrive, premier servi"
+0
+./monProgramme 1+5+1
+1
+./monProgramme
+Nombre de paramètres insuffisants
+</pre>
+
+<h2>Travail attendu</h2>
+<ol>
+  <li>Dans le répertoire 'tp3', créer un sous répertoire 'palindrom'</li>
+  <li>Créer un fichier palindrom.c</li>
+  <li>Implémenter le programme dans le fichier c créé</li>
+  <li>Le compiler, corriger les erreurs si besoin.</li>
+  <li>Le copier dans son répertoire de rendu.</li>
+</ol>
+
+
+</div>
+
+</div>
+<br class="Cleaner" />
+
+</div>
+</div>
+</body>
+</html>

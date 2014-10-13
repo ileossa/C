@@ -1,0 +1,769 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="html" xmlns="http://www.w3.org/1999/xhtml">
+
+<head id="head" >
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>
+ Le langage C - Concepts fondamentaux
+</title>
+
+<meta name="keywords" content=""/>
+<meta name="description" content=""/>
+<link href="http://10.34.128.10:8181/res/styles/default/style.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/node.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/tutorial.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/menu.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/context-menu.css" rel="stylesheet" type="text/css"/><script src="http://10.34.128.10:8181/res/js/prototype.js"></script><script src="http://10.34.128.10:8181/res/js/scriptaculous.js"></script><script src="http://10.34.128.10:8181/res/js/essilab.js"></script>
+
+
+</head>
+<body id="body" >
+
+<div id="container" >
+
+<div id="headerWrapper" >
+
+<div id="header" >
+
+
+
+
+
+
+
+<div id="menuGlobal" class="Menu ">
+	<ul>
+								
+	<li class="MenuItem">
+		<a href="http://10.34.128.10:8181/cours">Support de cours</a>
+			</li>
+								
+	<li class="MenuItem">
+		<a href="http://10.34.128.10:8181/exercises">Exercices</a>
+			</li>
+								
+	<li class="MenuItem">
+		<a href="http://10.34.128.10:8181/student/_points">Résultats</a>
+			</li>
+			</ul>
+</div>
+
+</div>
+</div>
+<div id="content" >
+
+<div class="ContentPane" >
+
+
+<div class="Tutorial">
+
+<h1>Le langage C - Concepts fondamentaux : conversion de type, structures itératives, fonctions</h1>
+
+<h2>Priorités entre opérateurs</h2>
+
+<table>
+<tbody><tr>
+<th colspan="13">Priorité des opérateurs</th>
+</tr>
+<tr>
+
+<th>+++++++++++++</th>
+<td>()</td>
+<td>[]</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+
+<th>++++++++++++</th>
+<td>--</td>
+<td>++</td>
+<td>!</td>
+<td>~</td>
+<td>-</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+</tr>
+<tr>
+<th>+++++++++++</th>
+<td>*</td>
+<td>/</td>
+<td>%</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<th>++++++++++</th>
+<td>+</td>
+<td>-</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<th>+++++++++</th>
+<td>&lt;&lt;</td>
+<td>&gt;&gt;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+
+</tr>
+<tr>
+<th>++++++++</th>
+<td>&lt;</td>
+<td>&lt;=</td>
+<td>&gt;=</td>
+<td>&gt;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+
+</tr>
+<tr>
+<th>+++++++</th>
+<td>==</td>
+<td>!=</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+
+</tr>
+<tr>
+<th>++++++</th>
+<td>&amp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+
+<th>+++++</th>
+<td>^</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<th>++++</th>
+
+<td>|</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<th>+++</th>
+<td>&amp;&amp;</td>
+
+<td>||</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<th>++</th>
+<td>?:</td>
+
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<th>+</th>
+<td>=</td>
+<td>+=</td>
+
+<td>-=</td>
+<td>*=</td>
+<td>/=</td>
+<td>%=</td>
+<td>&lt;&lt;=</td>
+<td>&gt;&gt;=</td>
+<td>&amp;=</td>
+<td>^=</td>
+<td>|=</td>
+
+</tr>
+</tbody></table>
+
+<h2>Types, aspects avancés</h2>
+
+<h3>Conversions de types, le cast</h3>
+
+<p>Une conversion de type renvoie la valeur d’une expression (de type A) dans un nouveau type B.</p>
+<p>Les conversions ne peuvent être effectuées que sur les types scalaires (c’est `a dire les types arithm´etiques et les pointeurs).</p>
+<p>Une conversion de type conserve toujours la valeur originale dans la mesure ou le nouveau type est capable de la repr´esenter. Ainsi, un nombre flottant peut être arrondi dans une conversion de double vers float. Enfin, la conversion
+peut être soit implicite, c’est `a dire effectuée par le compilateur (par exemple, si i est une variable de type float et j de type int, alors l’expression i+j est
+automatiquement de type float).</p>
+<p>Elle peut être également explicite grace à l’opérateur de <strong>cast</strong> (transtypage en français). </p>
+<p>Il est une bonne pratique et très important (pour la clarté du programme) d’utiliser l’opérateur de cast dès qu’une conversion de type est requise. Cela
+évite aussi les warnings du compilateur.</p> 
+
+<strong>Exemple</strong>
+<pre class="ScreenEditor">
+void f(float i, float j) { // fonction avec 2 paramètres de type
+  ... // float
+}
+...
+  int i = 14;
+  float j = 2.0;
+
+f( (float)i, j); // appel de f avec conversion de i vers le type float
+}
+</pre>
+
+<h4>Les situations de convertion de type</h4>
+
+<p>En C, les situations où se produisent les conversions sont les suivantes :</p>
+<ul>
+<li> une valeur d’un certain type est utilisée dans un contexte qui en requiert
+un autre :
+  <ul>
+    <li>passage de paramètre : le paramètre effectif n’a pas le type du paramètre formel</li>
+    <li>affectation : la valeur à affecter n’a pas le même type que la variable</li>
+    <li>valeur rendue par une fonction : l’opérande de return n’a pas le type indiqué dans la déclaration de la fonction.</li>
+   </ul>
+</li>
+<li>
+opérateur de conversion : le programmeur demande explicitement une conversion.
+</li>
+<li>
+Un opérateur a des opérandes de types différents.
+</li>
+</ul>
+<p>
+Dans ce dernier cas, et contrairement aux deux cas précédents, c’est le compilateur
+qui effectue la conversion selon des règles de concordance de type soigneusement définies qui sont
+détailléees ci après.
+</p>
+
+<h4>La règle de promotion des entiers</h4>
+
+<p>Cette règle est appliquée aux opérandes des opérateurs unaires + et -, aux opérateurs binaires de d´ecalage &lt;&lt; et &gt;&gt; ainsi que dans les conversions arithmétiques habituelles. Elle a pour but d’amener les ”petits
+entiers à  la taille des int.</p>
+<p>
+Ainsi, toute opérande de type char, unsigned char, short , unsigned short ou champs de bits sur les opérateurs précédent est automatiquement convertie
+en int (ou en unsigned int si le type int ne permet pas de représenter l’opérande).
+</p>
+
+<h4>Les conversions arithmétiques habituelles</h4>
+
+<p>Cette règle est appliquéee à tous les opérateurs arithmétiques binaires, exceptées
+les opérateurs de décalage &lt;&lt; et &gt;&gt; et les seconde et troisième opérandes de
+l’opérateur ternaire : ?:.</p>
+
+<p>La règles qui s’applique est la suivante :</p>
+
+<p>
+Dans le cas d’opérandes entières, on applique déjà la règle de promotion des entiers, ce qui permet de se débarrasser des petits entiers. Ensuite, si les opérandes sont toujours de types différents, on les convertit dans le type le plus haut dans la hiérarchie exposée dans la figure
+</p>
+<img style="clear:both;display:block;" src="http://10.34.128.10:8181/img/promotion_entiers.png"/>
+
+<h4>Risques d'erreur dans la comparaison d'entier signé en non signés</h4>
+
+<p>En général, les conversions fonctionnent de façon satisfaisante vis à vis du programmeur.</p>
+<p>Cependant, il existe une situation permettant d’obtenir des résultats
+surprenants : lors de la comparaison entre des entiers signés et non signés.
+Consid´erer ainsi le programme suivant :
+</p>
+
+<pre class="ScreenEditor">
+#include &lt;stdio.h&gt;
+int main () {
+  unsigned int i = 0;
+  if (i &lt; -1) printf("Résultat innattendu!\n");
+  else printf("Résultat attendu!\n");
+  return 0;
+}
+</pre>
+
+<p>Cet exemple imprimera le message "Résultat innatendu", laissant croire que 0 &lt; −1...</p>
+
+<p>On peut expliquer la situation de la manière suivante : l’opérateur &lt; possède une opérande de type
+unsigned int (i) et l’autre de type int (la constante -1). D’après la figure précédente,
+cette dernière est convertie en unsigned int et le compilateur réalise la comparaison
+non signée entre 0 et 4294967295 (puisque -1 = 0xFFFFFFFF= 4294967295).
+</p>
+<p>Pour que tout revienne dans l’ordre, il suffit d’utiliser l’opérateur de conversion
+dans le test qui devient : if ( (int) i &lt -1)</p>
+
+<p><strong>Attention</strong>, car on peut aussi utiliser des unsigned int sans s’en rendre compte !
+Ainsi :</p>
+
+<pre class="ScreenEditor">
+#include &lt;stdio.h&gt;
+int main () {
+  if ( sizeof(int) &lt; -1) 
+    printf("Résultat attendu\n");
+  else 
+    printf("Resultat inattendu!\n");
+  return(0);
+}
+</pre>
+
+<p>imprimera le message "résultat innatendu"</p>
+
+<strong>Recommandations</strong>
+<ul>
+  <li> Ne jamais m´elanger entiers sign´es et non sign´es dans les comparaisons
+  (l’option -Wall du compilateur le signale normalement) ! Utiliser l’op´erateur
+  de conversion pour amener les op´erandes de la comparaison dans le
+  même type.</li>
+ <li>
+  bien noter que sizeof renvoit une valeur de type entier non sign´e.
+ </li>
+</ul>
+
+<h2>Les structures itératives</h2>
+
+<p>Le rôle des structures itératives est de répéter un certain nombre de fois une instruction ou un bloc d'instruction</p>
+<p>Les conditions de continuité des itérations sont exprimés sous forme booléenne, toute comme les structures décisionnelles.</p>
+<p>Le C propose 3 forme de structures itératives, chacune plus adapté pour un usage particulier.</p>
+
+<h3>Instruction for</h3>
+
+<p>L'instruction for est tout particulier adaptée pour parcourir des intervalles de valeur ou des tableaux.</p>
+<strong>Syntaxe</strong>
+<pre class="ScreenEditor"> 
+for (expression1; expression2; expression3)
+ instruction ou bloc d'instruction
+</pre>
+
+<p>expression1 et expression3 peuvent être n’importe quelle expression. On considère néanmoins l'expression1 comme une expression d'initialisation des itérateurs, et l'expression2 comme un expression d'incrémentation</p>
+<p>expression2 est une expression de contrôle et doit donc être de type scalaire. Elle représente la condition de continuité de l'itération</p> 
+<p>Le déroulement de cette instruction est illustré par l’organigramme suivant</p>
+<img style="clear:both;display:block;" src="http://10.34.128.10:8181/img/structure_for.png"/>
+
+<strong>Exemple</strong>
+<pre class="ScreenEditor">
+int i,max;
+for (i=0, max=5; i&lt;max; i++) {
+ printf("Itération n°%d\n", i);
+}
+</pre>
+<strong>Texte Affiché à l'écran</strong>
+<pre class="ScreenConsole">
+Itération n°0
+Itération n°1
+Itération n°2
+Itération n°3
+Itération n°4
+</pre>
+
+
+
+<h3>Instruction while</h3>
+
+<p>L'instruction while est tout particulièrement adaptée lorsque qu'un bloc d'instruction doit être exécuté jusqu'à ce qu'une condition booléenne ne soit plus rempli. Contrairement à la boucle for, on l'utilise lorsqu'on a pas forcément connaissance de la taille de l'intervalle à parcourir, ou qu'il ne s'agit pas de parcourir un intervalle mais d'observer un état du système</p>
+
+<p>L'expression, de type scalaire, sera évaluée avant que l'instruction ne soit executé.</p>
+
+<p>L'instruction ou le bloc d'instruction peut ne jamais être executé.</p>
+
+<strong>Syntaxe</strong>
+<pre class="ScreenEditor">
+while (expression) 
+  instruction ou bloc d'instruction
+</pre>
+
+<img style="clear:both;display:block;" src="http://10.34.128.10:8181/img/structure_while.png"/>
+
+<strong>Exemple</strong>
+
+<pre class="ScreenEditor">
+int i=7;
+while (++i%7);  
+printf("Le premier multiple de 7 est %d", i);
+</pre>
+
+<strong>Texte Affiché à l'écran</strong>
+<pre class="ScreenConsole">
+Le premier multiple de 7 est 14
+</pre>
+
+<h3>Instruction do...while</h3>
+
+<p>L'instruction do..while est particulièrement adapté lorsqu'une partie de l'expression devant être évalué est initialisée à l'intérieur de block d'instruction de la structure itérative.</p>
+<p>Contrairement à la boucle while, le block d'instruction est executé avant que l'expression ne soit évaluée. Le block d'instruction conditionne l'expression.</p>
+<p>On l'utilise égalemennt pour factoriser une partie de code, voir l'exemple ci-après.</p>
+<strong>Syntaxe</strong>
+<pre class="ScreenEditor">
+do 
+{ 
+  instruction ou bloc d'instruction
+}
+while (expression)
+</pre>
+
+<img style="clear:both;display:block;" src="http://10.34.128.10:8181/img/structure_do.png"/>
+
+<strong>Exemple</strong>
+
+<pre class="ScreenEditor">
+/* soit rand() une fonction qui renvoi une valeur aléatoire. 
+   Nous voulons une valeur pair entre 0 et 99.
+*/
+// Avec la boucle while
+int number = rand() % 100;
+while (number % 2) 
+  number = rand() % 100;
+// avec do while
+do
+{
+  number = rand() % 100;
+}
+while (number%2);
+</pre>
+
+<h3>L'instruction break</h3>
+<p>Le break peut être utilisé dans n'importe quel structure itérative, lorsqu'il est exécuté elle provoque l'arrêt immédiat de la boucle.</p>
+<p>Il est interessant de l'utilisé lorsqu'un objectif est atteint ou devenu inaccessible.</p>
+
+<strong>Exemple</strong>
+
+<pre class="ScreenEditor">
+// trouver la premiere position de a.
+char* chaine = "Michael";
+int i;
+for (i=0;0!= chaine[i];i++) {
+  if ('a' == chaine[i]) break;
+}
+if (0!= chaine[i])
+  printf("Lettre 'a' trouvée à la position %d", i);
+</pre>
+
+<strong>Texte Affiché à l'écran</strong>
+<pre class="ScreenConsole">
+Lettre 'a' trouvée à la position 4
+</pre>
+
+<h3>L'instruction continue</h3>
+<p>L'instruction continue s'applique également aux structures de contrôle et permet de passer directement à l'itération suivante sans executé les instructions qui la succède</p>
+<p>On l'utilise lorsqu'une valeur et un état du système ne justifie plus qu'on poursuive le bloc d'instruction, surtout lorsque le bloc est lourd.</p>
+
+<pre class="ScreenEditor">
+// Additionner les chiffres impair d'une chaine.
+char* chaine = "1M4i5c6h7a8e8l"
+int i;
+char current, 
+unsigned int result = 0;
+for (i=0; 0!= chaine[i]; i++) {
+    if ('0' &gt; chaine[i] || '9' &lt; chaine[i])
+     continue; 
+    current = chaine[i] - '0';  
+    if (current%2)
+     result += current;
+}
+  printf("Addition des impairs %d", i);
+</pre>
+
+<strong>Texte Affiché à l'écran</strong>
+<pre class="ScreenConsole">
+Addition des impairs 13
+</pre>
+
+
+<h2>Introduction aux fonctions</h2>
+
+<p>Pour les programmes de grande envergure, en c, la structure d'organisation et de décomposition du programme en sous programmes est la fonction.</p>
+<p>Nous avons déjà utilisé la notion de fonction, d'une part en implémentant la fonction principale main, mais également en utilisant la fonction d'affichage printf</p>
+
+<h3>Déclaration et définition d'une fonction</h3>
+
+<strong>Syntaxe</strong>
+
+<pre class="ScreenEditor">
+type_resultat nom fonction (type1 arg1, . . . , typen argn) {
+ declaration_de_variables_locales
+ instruction_bloc_instruction
+}
+</pre>
+
+
+<p>Dans cette définition de fonction, on rappelle que :</p>
+<ul>
+<li>type_resultat correspond au type du résultat de la fonction.</li>
+<li>nom fonction est le nom qui identifie la fonction.</li>
+<li>type1 arg1 . . . typen argn définit les types et les noms des paramètres de la fonction.
+</li>
+</ul>
+
+On peut également n'en déclarer que le prototype, c'est à dire sans le corps :
+
+<pre class="ScreenEditor">
+type_resultat nom fonction (type1 arg1, . . . , typen argn) ;
+</pre>
+
+<p>
+Dans ce cas, il ne s'agit que d'un définition, et l'implementation pourra être placé plus bas dans le code. Cette approche peut être intéressante pour améliorer la lisibilité du code :
+on placera généralement des prototypes en début de fichiers et leur implémentation en fin. De plus de cette manière les fonctions pourront être appelés par d'autre situées au dessus de leur implémentation.
+</p>
+<p>Cette approche est fortement lié à la notion de modularité du logiciel et notamment des header (.h) que nous verrons plus loin dans ce cours</p>
+
+<p>Une fonction peut renvoyer comme résultat</p>
+<ul>
+<li>un type arithmétique (scalaire)</li>
+<li>une structure</li>
+<li>une union</li>
+<li>un pointeur</li>
+<li>rien (void)</li>
+</ul>
+<p>Dans le cas où type_resultat est différent du type void, le corps de la fonction
+doit obligatoirement comporter une instruction return, dite instruction
+de retour à la fonction appelante. </p>
+<p>La syntaxe de cette instruction est :</p>
+<pre class="ScreenEditor">
+return expression ;
+</pre>
+<strong>Exemple</strong>
+<pre class="ScreenEditor">
+int compare(int a, int b) {
+  return (a&gtb?1:a&lt;b?-1:0);
+}
+</pre>
+<p>Par contre une fonction ne peux pas renvoyer de tableau, de chaine de caractère ou de fonction, mais elle peut cependant renvoyé un pointeur sur ces éléments.</p>
+<p>Il est possible de faire apparaitre plusieurs instructions return dans le corps de la fonction, l'instruction return est débranche et le code situé en dessous ne sera pas exécuté.</p>
+<pre class="ScreenEditor">
+int compare(int a, int b) {
+  if (a&gtb) return 1;
+  if (a&ltb) return -1;
+  return 0;
+}
+</pre>
+
+<pre class="ScreenEditor">
+char* strcpy(char* input) ;
+</pre>
+
+
+<p>un fonction peut ne pas prendre de paramètre</p>
+
+<pre class="ScreenEditor">
+int rand() ;
+</pre>
+
+<p>Contrairement à d'autre langages, on ne peut pas définir de fonction à l'intérieur d'une autre.</p>
+
+<p>En principe, l’ordre des définitions de fonctions dans le texte du programme ne joue pas de rôle, mais chaque fonction doit être déclarée(prototype) ou définie(implémentée) avant d’etre appelée.</p>
+
+<p>
+Enfin, il faut noter que les variables déclarées dans une fonction sont locales et ne peuvent être utilisée ou appelée en dehors d'elle.
+</p>
+
+<h4>Appel d'une fonction</h4>
+
+<p>L'appel d'une fonction se fait tout simplement par son identifiant, suivi de l'opérateur (), soit vide, soit peuplé des paramètres définis par la fonction.</p>
+
+<strong>Syntaxe</strong>
+
+<pre class="ScreenEditor">
+identifiant_fonction([arg1, arg2 ... argn]);
+</pre>
+
+<p>L'ordre et le type des paramètres transmis lors de l'appel de la fonction doit être en concordance avec sa définition </p>
+
+<pre class="ScreenEditor">
+int ma_fonction(char, char*);
+....
+char c;
+char* chaine
+ma_fonction(c, chaine); // valide.
+ma_fonction(chaine, c); // non valide.
+ma_fonction(chaine); // non valide.
+ma_fonction(c); // non valide.
+ma_fonction(); // non valide.
+</pre>
+
+<h4>Portée des variables</h4>
+
+<p>Selon l’endroit où on déclare une variable, celle-ci pourra être accessible (visible)
+partout dans le code ou seulement dans une partie de celui-ci (à l’intérieur d’une
+fonction typiquement)</p>
+<p>
+On parle de la portée (ou visibilitée) de la variable.</p>
+
+<p>Lorsqu’une variable est d´eclarée dans le code même, c’est-à-dire à l’extérieur
+de toute fonction ou de tout bloc d’instruction, elle est accessible de partout
+dans le code (n’importe quelle fonction du programme peut faire appel à cette
+variable) On parle alors de <strong>variable globale</strong>.</p>
+
+<p>Lorsque l’on déclare une variable `a l’intérieur d’un bloc d’instructions (entre des
+accolades), sa portée se limite à l’intérieur du bloc dans lequel elle est déclarée.
+On parle de <strong>variable locale</strong>.</p>
+
+
+<h4>Variables globales</h4>
+
+<p>
+Un variable globale est donc une variable déclarée en dehors de toute fonction,
+au début du fichier, à l’extérieur de toutes les fonctions et sont disponibles à
+toutes les fonctions du programme.</p>
+<p>
+En général, les variables globales sont déclarees immédiatement derrière les instructions #include au début du programme.
+Elles sont systématiquement permanentes.
+</p>
+<strong>Exemple</strong>
+<pre class="ScreenEditor">
+#include &lt;stdio.h&gt;
+int STATUS;
+
+void active_status(){
+ STATUS = 1;
+}
+
+void desactive_status(...) {
+  STATUS=0;
+}
+</pre>
+
+<strong>Conseils</strong>
+
+<ul>
+<li>
+Les variables globales sont à utiliser avec précaution, puisqu’elles créent des
+liens invisibles entre les fonctions. La modularitée d’un programme peut en
+souffrir et le programmeur risque de perdre la vue d’ensemble.</li>
+<li>
+Il faut faire attention à ne pas cacher involontairement des variables globales
+par des variables locales du même nom. (redefinition)
+</li>
+<li>
+D'une manière générale, il est fortement déconseillé d'utiliser des variables globales en dehors de variables de définition de configurations. 
+</li>
+</ul>
+
+
+<h4>Variables locales</h4>
+
+
+<p>Les variables déclarées dans un bloc d’instructions sont uniquement visibles à
+l’intérieur de ce bloc. </p>
+
+<p>On dit que ce sont des variables locales `a ce bloc.</p>
+
+<pre class="ScreenEditor">
+void hello() {
+  char nom[20];
+  printf("Introduisez votre nom : ");
+  scanf("%s",&nom);
+  printf("Bonjour %s !\n", nom);
+}
+</pre>
+
+<p>La variable nom est définie localement dans le bloc extérieur de la
+fonction hello. Ainsi, aucune autre fonction n’a accès à cette variable.
+</p>
+
+<p><strong>Attention</strong> ! Une variable déclarée à l’intérieur d’un bloc cache toutes les va-
+riables du même nom des blocs qui l’entourent. </p>
+<pre class="ScreenEditor">
+int X; //d´eclaration d’une variable globale
+int fonction(int A) {
+  double X; //variable locale qui cache la variable X globale
+  ...
+}
+</pre>
+
+<p>
+<strong>Remarque</strong> : bien qu’il soit possible en C de déclarer des variables à l’intérieur
+d’une boucle ou d’un bloc conditionnel, il est d´econseillé de le faire et toutes les
+déclarations locales devront se faire au début des fonctions.
+</p>
+
+<h4>Appels récurcif de fonction</h4>
+
+<p>Le fonctions définies en C ont la propriété de récursivité, c’est à dire la capacitée
+de s’appeler elle-même.</p>
+
+<pre class="ScreenEditor">
+int pow (int a, int n) {
+  if (n == 0) return 1;
+  return a*puissance(a, n-1); 
+}
+</pre>
+
+<!-- 
+<h2>Modularisation du logiciel</h2>
+ -->
+ 
+</div>
+</div>
+<br class="Cleaner" />
+
+</div>
+</div>
+</body>
+</html>

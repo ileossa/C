@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="html" xmlns="http://www.w3.org/1999/xhtml">
+
+<head id="head" >
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>
+ TP2. Ex07. Fibonacci
+</title>
+
+<meta name="keywords" content=""/>
+<meta name="description" content=""/>
+<link href="http://10.34.128.10:8181/res/styles/default/style.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/node.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/tutorial.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/menu.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/context-menu.css" rel="stylesheet" type="text/css"/><script src="http://10.34.128.10:8181/res/js/prototype.js"></script><script src="http://10.34.128.10:8181/res/js/scriptaculous.js"></script><script src="http://10.34.128.10:8181/res/js/essilab.js"></script>
+
+
+</head>
+<body id="body" >
+
+<div id="container" >
+
+<div id="headerWrapper" >
+
+<div id="header" >
+
+
+
+
+
+
+
+<div id="menuGlobal" class="Menu ">
+	<ul>
+								
+	<li class="MenuItem">
+		<a href="http://10.34.128.10:8181/cours">Support de cours</a>
+			</li>
+								
+	<li class="MenuItem">
+		<a href="http://10.34.128.10:8181/exercises">Exercices</a>
+			</li>
+								
+	<li class="MenuItem">
+		<a href="http://10.34.128.10:8181/student/_points">Résultats</a>
+			</li>
+			</ul>
+</div>
+
+</div>
+</div>
+<div id="content" >
+
+<div class="ContentPane" >
+
+
+
+<div class="Tutorial">
+<h1>TP2. Ex07. Fibonacci</h1>
+<table>
+<tr><td>Temps de référence</td><td>15 mn</td></tr>
+<tr><td>Temps estimé</td><td>30 mn</td></tr>
+<tr><td>Temps max</td><td>45 mn</td></tr>
+<tr><td>Répertoire de rendu</td><td>~/seminaire/tp2/fibonacci</td></tr>
+<tr><td>Fichier(s) de rendu</td><td>fibonacci.c</td></tr>
+</table>
+
+<h2>Enoncé</h2>
+
+
+
+
+<p>Réaliser un programme qui affiche le nombre au n-ième rang de la suite de Fibonacci lorsqu'une une seule valeur lui est fournie en paramètre. Si un deuxième paramètre est fourni, le programme affichera les nombres de Fibonacci sur l'intervalle formé par les paramètres. Les paramètres sont des entiers naturels et le deuxième est supérieur au premier.</p>
+
+<strong>Suite de Fibonacci (résumé)</strong>
+
+<p>La suite de Fibonacci est une suite d'entiers très connue. Elle doit son nom à un mathématicien italien du XIIIe siècle connu sous le nom de Leonardo Fibonacci qui, dans un problème récréatif posé dans un de ses ouvrages, le Liber Abaci, décrit la croissance d'une population de lapins :</p>
+
+<p>« Un homme met un couple de lapins dans un lieu isolé de tous les côtés par un mur. Combien de couples obtient-on en un an si chaque couple engendre tous les mois un nouveau couple à compter du troisième mois de son existence ? »</p>
+
+<p>Ce problème est à l'origine de la suite dont le n-ième terme correspond au nombre de paires de lapins au n-ième mois. Dans cette population (idéale), on suppose que :</p>
+
+<ul>
+<li>au (début du) premier mois, il y a juste une paire de lapereaux</li>
+<li>les lapereaux ne procréent qu'à partir du (début du) troisième mois</li>
+<li>chaque (début de) mois, toute paire susceptible de procréer engendre effectivement une nouvelle paire de lapereaux</li>
+<li>les lapins ne meurent jamais (donc la suite de Fibonacci est strictement croissante).</li>
+</ul>
+<strong>Extrait de la suite de Fibonacci</strong>
+
+<table>
+<tr><td>F0</td><td>F1</td><td>F2</td><td>F3</td><td>F4</td><td>F5</td><td>F6</td><td>Fn</td></tr>
+<tr><td>0</td><td>1</td><td>1</td><td>2</td><td>3</td><td>5</td><td>8</td><td>Fn-1 + Fn-2</td></tr>
+</table>
+
+<h2>Exemple de résulat(s) attendu(s)</h2>
+
+<pre class="ScreenConsole">
+./monProgramme 5
+5
+./monProgramme 25
+75025
+./monProgramme 10 15
+55 89 144 233 377 610
+./monProgramme 0 5
+0 1 1 2 3 5
+./monProgramme
+Nombre de paramètres insuffisants
+</pre>
+
+<h2>Travail attendu</h2>
+<ol>
+<li>Dans le répertoire 'tp2', créer un sous répertoire 'fibonacci'</li>
+<li>Créer un fichier fibonacci.c</li>
+<li>Implémenter le programme dans le fichier c créé</li>
+<li>Le compiler, corriger les erreurs si besoin.</li>
+<li>Le copier dans son répertoire de rendu.</li>
+</ol>
+
+</div>
+</div>
+<br class="Cleaner" />
+
+</div>
+</div>
+</body>
+</html>

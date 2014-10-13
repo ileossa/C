@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="html" xmlns="http://www.w3.org/1999/xhtml">
+
+<head id="head" >
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>
+ TP2. Ex03. Euclide
+</title>
+
+<meta name="keywords" content=""/>
+<meta name="description" content=""/>
+<link href="http://10.34.128.10:8181/res/styles/default/style.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/node.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/tutorial.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/menu.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/context-menu.css" rel="stylesheet" type="text/css"/><script src="http://10.34.128.10:8181/res/js/prototype.js"></script><script src="http://10.34.128.10:8181/res/js/scriptaculous.js"></script><script src="http://10.34.128.10:8181/res/js/essilab.js"></script>
+
+
+</head>
+<body id="body" >
+
+<div id="container" >
+
+<div id="headerWrapper" >
+
+<div id="header" >
+
+
+
+
+
+
+
+<div id="menuGlobal" class="Menu ">
+	<ul>
+								
+	<li class="MenuItem">
+		<a href="http://10.34.128.10:8181/cours">Support de cours</a>
+			</li>
+								
+	<li class="MenuItem">
+		<a href="http://10.34.128.10:8181/exercises">Exercices</a>
+			</li>
+								
+	<li class="MenuItem">
+		<a href="http://10.34.128.10:8181/student/_points">Résultats</a>
+			</li>
+			</ul>
+</div>
+
+</div>
+</div>
+<div id="content" >
+
+<div class="ContentPane" >
+
+
+
+<div class="Tutorial">
+<h1>TP2. Ex03. Euclide</h1>
+<table>
+<tr><td>Temps de référence</td><td>5 mn</td></tr>
+<tr><td>Temps estimé</td><td>15 mn</td></tr>
+<tr><td>Temps max</td><td>25 mn</td></tr>
+<tr><td>Répertoire de rendu</td><td>~/seminaire/tp2/euclide</td></tr>
+<tr><td>Fichier(s) de rendu</td><td>euclide.c</td></tr>
+</table>
+
+<h2>Enoncé</h2>
+
+<p>Réaliser un programme qui calcul par soustractions successives le quotient entier et le reste de la division entière sur des entiers naturels. Le premier paramètre représente le dividende et le deuxième le diviseur. Afficher dividende, le diviseur, le quotient et le reste tel que décrit ci-dessous. Vous nommerez les variables : quotient, remainder, divisor, dividend</p>
+
+<h2>Exemple de résulat(s) attendu(s)</h2>
+
+<pre class="ScreenConsole">
+./monProgramme  22 7
+22=3*7+1
+./monProgramme 32 8
+32=4*8
+./monProgramme 32 0
+Division par zero impossible
+./monProgramme 5 10
+5 n'est pas divisible par 10
+./monProgramme -10 5
+Division sur des entiers naturels uniquement
+./monProgramme 45
+Nombre de paramètres insuffisants
+</pre>
+
+<h2>Travail attendu</h2>
+<ol>
+<li>Dans le répertoire 'tp2', créer un sous répertoire 'euclide'</li>
+<li>Créer un fichier euclide.c</li>
+<li>Implémenter le programme dans le fichier c créé</li>
+<li>Le compiler, corriger les erreurs si besoin.</li>
+<li>Le copier dans son répertoire de rendu.</li>
+</ol>
+
+</div>
+</div>
+<br class="Cleaner" />
+
+</div>
+</div>
+</body>
+</html>

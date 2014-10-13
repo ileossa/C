@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="html" xmlns="http://www.w3.org/1999/xhtml">
+
+<head id="head" >
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>
+ TP4 - Implémentation d'une pile utilisant un chainage simple
+</title>
+
+<meta name="keywords" content=""/>
+<meta name="description" content=""/>
+<link href="http://10.34.128.10:8181/res/styles/default/style.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/node.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/tutorial.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/menu.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/context-menu.css" rel="stylesheet" type="text/css"/><script src="http://10.34.128.10:8181/res/js/prototype.js"></script><script src="http://10.34.128.10:8181/res/js/scriptaculous.js"></script><script src="http://10.34.128.10:8181/res/js/essilab.js"></script>
+
+
+</head>
+<body id="body" >
+
+<div id="container" >
+
+<div id="headerWrapper" >
+
+<div id="header" >
+
+
+
+
+
+
+
+<div id="menuGlobal" class="Menu ">
+	<ul>
+								
+	<li class="MenuItem">
+		<a href="http://10.34.128.10:8181/cours">Support de cours</a>
+			</li>
+								
+	<li class="MenuItem">
+		<a href="http://10.34.128.10:8181/exercises">Exercices</a>
+			</li>
+								
+	<li class="MenuItem">
+		<a href="http://10.34.128.10:8181/student/_points">Résultats</a>
+			</li>
+			</ul>
+</div>
+
+</div>
+</div>
+<div id="content" >
+
+<div class="ContentPane" >
+
+
+<div class="Tutorial">
+<h1>TP4 - Implémentation d'une pile utilisant un chainage simple</h1>
+<table>
+<tr><td>Temps de référence</td><td>00:20 mn</td></tr>
+<tr><td>Temps estimé</td><td>0:35 mn</td></tr>
+<tr><td>Temps max</td><td>1:20 mn</td></tr>
+<tr><td>Répertoire de rendu</td><td>~/seminaire/tp4/stack</td></tr>
+<tr><td>Fichier(s) de rendu</td><td>my_stack.c</td></tr>
+</table>
+
+<h2>Enoncé</h2>
+<img width=400 style="float:left;margin:0 10px 10px 0" src="http://10.34.128.10:8181/res/images/lifo.png"/>
+<p>Une pile (en anglais stack) est une structure de données fondée sur le principe « dernier arrivé, premier sorti » (ou LIFO pour Last In, First Out), ce qui veut dire que les derniers éléments ajoutés à la pile seront les premiers à être récupérés. Le fonctionnement est celui d'une pile d'assiettes : on ajoute des assiettes sur la pile, et on les récupère dans l'ordre inverse, en commençant par la dernière ajoutée.</p>
+
+<p>Dans la plupart des langages de programmation compilés, la pile est l'endroit où sont poussés tout ou partie des paramètres d'appel des procédures ou fonctions. Par ailleurs, on y crée un espace pour des variables locales. La pile est ainsi formée de cadres de piles (stack frames) comprenant pour chaque procédure en cours d'appel imbriqué ses paramètres, ses variables locales et son point de retour.</p>
+
+<p>Les fonctions récurcives, utilisées sur de grands volumes de données peuvent entrainer des dépassement de pile et générer des exceptions (StackOverFlow...). Ceci pouvant être du à un espace mémoire physiquement limité ou une implémentation statique contigue</p>
+
+<p>Pour palier à cette limitation d'empilage, l'implémentation chainée peut s'avérer très performante sans perdre en rapidité, hormis l'allocation/libération de mémoire (de la taille d'une référence...). En java, et contrairement au C, la libération de la mémoire est gérée de manière asynchrone (Garbage Collector) et ne ralentit pas l'exécution du programme.</p>
+
+<p>Comme on est en Java, on souhaite que la pile puisse être parcouru à l'aide de la structure for(Type e : Collection), et qu'elle soit Iterable.</p>
+	
+<h3>Exemples concrets d'application</h3>
+<ul>
+ <li>Dans un navigateur web, une pile sert à mémoriser les pages Web visitées. L'adresse de chaque nouvelle page visitée est empilée et l'utilisateur dépile l'adresse de la page précédente en cliquant le bouton « Afficher la page précédente ».</li>
+ <li>L'évaluation des expressions mathématiques en notation post-fixée (ou polonaise inverse) utilise une pile.</li>
+ <li>La fonction « Annuler la frappe » (en anglais Undo) d'un traitement de texte mémorise les modifications apportées au texte dans une pile.</li>
+ <li>Un algorithme de recherche en profondeur utilise une pile pour mémoriser les nœuds visités.</li>
+ <li>On peut très simplement inverser les éléments contenus dans un tableau ou dans une chaîne de caractères (pour tester un palindrome) en utilisant une pile. Il suffit d'empiler les éléments sur une pile puis de reconstituer le tableau (ou la chaîne) inverse en dépilant les éléments.</li>
+ <li>Les algorithmes récursifs admis par certains langages (LISP, Algol, Pascal, C, etc.) utilisent implicitement une pile d'appel. Dans un langage non récursif (FORTRAN par exemple), on peut donc toujours simuler la récursivité en créant les primitives de gestion d'une pile.</li>
+<li>Dans l'architecture x86 32bits, le registre ESP sert à indiquer l'adresse du sommet d'une pile dans la RAM. Les opcodes "push" et "pop" permettent respectivement d'empiler et de dépiler des données. Les opcodes "call" et "ret" utilisent la pile pour appeler une fonction et la quitter par la suite en retournant à l'instruction suivant immédiatement l'appel.</li>
+
+<li>Certains processeurs n'utilisent pas de registre générique, mais uniquement la pile. Les instructions concernent alors ses premiers éléments. Par exemple, les calculatrices Hewlett-Packard, les processeurs Focus, ou les machines Burroughs de la gamme B 5000. Les instructions sont alors souvent plus courtes, car elles n'ont pas à référencer des registres1. Le bytecode du langage Java utilise aussi cette astuce.</li>
+</ul>
+
+Le programme devra utiliser  et implémenter suivant le my_stack.h:
+
+<pre class="ScreenEditor">
+typedef struct s_my_stack {
+   int value;
+   struct s_my_stack* pointer;
+} t_my_stack;
+
+/*
+** push the given value into the stack.
+*/
+void stack_push(t_my_stack** stack, int value);
+/*
+* remove the next value from the stack and return it 
+*/
+int stack_pop(t_my_stack** stack);
+/*
+* return the next value
+*/
+int stack_peek(t_my_stack** stack);
+
+/*
+* Free Memory reserved for the stack.
+*/
+void free_stack(t_my_stack* stack);
+
+</pre>
+
+Exemple de main :
+<pre class="ScreenEditor">
+int main(int argc, char** argv) {
+
+   t_my_stack* stack = NULL;
+   stack_push(&stack, 5);
+   stack_push(&stack, 8);
+   stack_push(&stack, 9);
+   printf("peek : %d", stack_peek()); // 9
+   printf("peek : %d", stack_pop()); // 9
+   printf("peek : %d", stack_pop()); // 8
+   printf("peek : %d", stack_pop()); // 5
+   printf("peek : %d", stack_pop()); // renvoyer -1 lorsque la pile est vide.
+
+   if (NULL != stack)
+    free_stack(stack);   
+}
+</pre>
+
+<h2>Travail attendu</h2>
+<ol>
+  <li>Dans le répertoire 'tp4', créer un sous répertoire 'stack'</li>
+  <li>Créer un fichier my_stack.c</li>
+  <li>Implémenter le programme dans le fichier c créé</li>
+  <li>Le compiler, corriger les erreurs si besoin.</li>
+  <li>Le copier dans son répertoire de rendu.</li>
+</ol>
+
+
+</div>
+</div>
+<br class="Cleaner" />
+
+</div>
+</div>
+</body>
+</html>

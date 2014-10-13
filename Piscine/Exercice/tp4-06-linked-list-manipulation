@@ -1,0 +1,158 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="html" xmlns="http://www.w3.org/1999/xhtml">
+
+<head id="head" >
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>
+ TP4. Ex6. Listes chaines, manipulation
+</title>
+
+<meta name="keywords" content=""/>
+<meta name="description" content=""/>
+<link href="http://10.34.128.10:8181/res/styles/default/style.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/node.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/tutorial.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/menu.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/context-menu.css" rel="stylesheet" type="text/css"/><script src="http://10.34.128.10:8181/res/js/prototype.js"></script><script src="http://10.34.128.10:8181/res/js/scriptaculous.js"></script><script src="http://10.34.128.10:8181/res/js/essilab.js"></script>
+
+
+</head>
+<body id="body" >
+
+<div id="container" >
+
+<div id="headerWrapper" >
+
+<div id="header" >
+
+
+
+
+
+
+
+<div id="menuGlobal" class="Menu ">
+	<ul>
+								
+	<li class="MenuItem">
+		<a href="http://10.34.128.10:8181/cours">Support de cours</a>
+			</li>
+								
+	<li class="MenuItem">
+		<a href="http://10.34.128.10:8181/exercises">Exercices</a>
+			</li>
+								
+	<li class="MenuItem">
+		<a href="http://10.34.128.10:8181/student/_points">Résultats</a>
+			</li>
+			</ul>
+</div>
+
+</div>
+</div>
+<div id="content" >
+
+<div class="ContentPane" >
+
+
+
+<div class="Tutorial">
+<h1>TP4. Ex6. Listes chainées, manipulation</h1>
+<table>
+<tr><td>Temps de référence</td><td>45 mn</td></tr>
+<tr><td>Temps estimé</td><td>1h23 mn</td></tr>
+<tr><td>Temps max</td><td>2h34 mn</td></tr>
+<tr><td>Répertoire de rendu</td><td>~/seminaire/tp4/linked_list_manipulation</td></tr>
+<tr><td>Fichier(s) de rendu</td><td>main.c, linked_list.h, linked_list.c</td></tr>
+</table>
+
+<h2>Enoncé</h2>
+
+<p>Recopier les fichiers linked_list.h et linked_list.c de votre précédent projet dans ce répertoire.</p>
+
+<p>Ajouter dans linked_list.h les prototypes ci-dessous</p>
+
+linked_list.h
+<pre class="ScreenEditor">
+/*Add an s_maillon at the end of the linked_list */
+void linked_list_append(t_maillon** list, int data);
+/*Insert at any place between 0 and linked_list_size() */
+void linked_list_insert(t_maillon** list, index index, int data);
+/* Remove the s_maillon at index position, if index is in [0, linked_list_size()] */
+void linked_list_remove_indice(t_maillon** list, unsigned int index);
+/* Remove first s_maillon containing the data value. */
+void linked_list_remove_value(t_maillon** list, int data);
+/* Remove all s_maillon containing the data value. */
+void linked_list_remove_all(t_maillon** list, int data);
+</pre>
+
+linked_list.c
+<pre class="ScreenEditor">
+#include "linked_list.h"
+/* Implements your functions here.*/
+</pre>
+
+main.c
+<pre class="ScreenEditor">
+#include &lt;stdio.h&gt;
+#include "linked_list.h"
+
+int main(int argc, char** argv) {
+  
+  t_maillon* list = NULL;
+  linked_list_append(&amp;list, 12);
+  linked_list_insert(&amp;list, 0, 7);
+  linked_list_insert(&amp;list, 1, 5);
+  linked_list_append(&amp;list, 2, 12);
+  linked_list_insert(&amp;list, linked_list_size(list), 5);
+  linked_list_append(&amp;list, 7);
+  linked_list_size(list);
+  linked_list_display(list);
+
+  linked_list_remove_indice(&amp;list, 0);
+  linked_list_size(list);
+  linked_list_display(list);
+
+  linked_list_remove_value(&amp;list, 12);
+  linked_list_size(list);
+  linked_list_display(list);
+
+  linked_list_remove_all(&amp;list, 5);
+  linked_list_size(list);
+  linked_list_display(list);
+    
+  return (0);
+}
+</pre>
+
+<p>Vous compilerez le programme avec gcc : </p>
+<pre class="ScreenConsole">
+gcc -Wall main.c linked_list.c
+</pre>
+<h2>Exemple de résulat(s) attendu(s)</h2>
+
+<pre class="ScreenConsole">
+6
+7 5 12 12 5 7
+5
+5 12 12 5 7
+4
+5 12 5 7
+2
+12 7
+</pre>
+
+<h2>Travail attendu</h2>
+<ol>
+  <li>Dans le répertoire 'tp4', créer un sous répertoire 'linked_list_manipulation'</li>
+  <li>Créer les fichiers main.c, linked_list.h, linked_list.c</li>
+  <li>Implémenter le programme dans le fichier c adéquate</li>
+  <li>Les compiler, corriger les erreurs si besoin.</li>
+  <li>Les copier dans leur répertoire de rendu.</li>
+</ol>
+
+</div>
+
+</div>
+<br class="Cleaner" />
+
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="html" xmlns="http://www.w3.org/1999/xhtml">
+
+<head id="head" >
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>
+ TP3. Ex9. Modification de casse.
+</title>
+
+<meta name="keywords" content=""/>
+<meta name="description" content=""/>
+<link href="http://10.34.128.10:8181/res/styles/default/style.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/node.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/tutorial.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/menu.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/context-menu.css" rel="stylesheet" type="text/css"/><script src="http://10.34.128.10:8181/res/js/prototype.js"></script><script src="http://10.34.128.10:8181/res/js/scriptaculous.js"></script><script src="http://10.34.128.10:8181/res/js/essilab.js"></script>
+
+
+</head>
+<body id="body" >
+
+<div id="container" >
+
+<div id="headerWrapper" >
+
+<div id="header" >
+
+
+
+
+
+
+
+<div id="menuGlobal" class="Menu ">
+	<ul>
+								
+	<li class="MenuItem">
+		<a href="http://10.34.128.10:8181/cours">Support de cours</a>
+			</li>
+								
+	<li class="MenuItem">
+		<a href="http://10.34.128.10:8181/exercises">Exercices</a>
+			</li>
+								
+	<li class="MenuItem">
+		<a href="http://10.34.128.10:8181/student/_points">Résultats</a>
+			</li>
+			</ul>
+</div>
+
+</div>
+</div>
+<div id="content" >
+
+<div class="ContentPane" >
+
+
+
+<div class="Tutorial">
+<h1>TP3. Ex9. Modification de casse</h1>
+<table>
+<tr><td>Temps de référence</td><td>15 mn</td></tr>
+<tr><td>Temps estimé</td><td>25 mn</td></tr>
+<tr><td>Temps max</td><td>45 mn</td></tr>
+<tr><td>Répertoire de rendu</td><td>~/seminaire/tp3/str_case</td></tr>
+<tr><td>Fichier(s) de rendu</td><td>str_case.c</td></tr>
+</table>
+
+<h2>Enoncé</h2>
+
+Construire un programme qui permet modifier la casse d'une phrase. Vous construirez ce programme de manière modulaire, à l'aide de fonction pour chaque modification de casse. 
+
+Le programme prendra 2 arguments; 
+<ul>
+<li>
+le premier indiquera de manière numérique le type de transformation à appliquer :
+<ul>
+<li>1 : minuscule.</li>
+<li>2 : majuscule</li>
+<li>3 : capitalisation</li> 
+</ul>
+</li>
+<li>
+Le second sera la chaine de caractère à modifier.
+</li>
+</ul>
+
+<strong>Les prototypes des fonctions à réaliser sont les suivantes:</strong>
+
+<pre class="ScreenEditor">
+ /*
+ ** input : the string change case.
+ */
+ void to_upper_case(char* input);
+ void to_lower_case(char* input);
+ void capitalize(char* input);
+</pre>
+
+<h2>Exemple de résulat(s) attendu(s)</h2>
+
+<pre class="ScreenConsole">
+./monProgramme 1 "Un exEmplE De ChaiNe"
+un exemple de chaine
+./monProgramme 2 "Un exEmplE De ChaiNe"
+UN EXEMPLE DE CHAINE
+./monProgramme 3 "Un exEmplE De ChaiNe"
+Un Exemple De Chaine
+./monProgramme "Un exEmplE De ChaiNe"
+Nombres de paramètres insuffisant
+</pre>
+
+<h2>Travail attendu</h2>
+<ol>
+  <li>Dans le répertoire 'tp3', créer un sous répertoire 'str_case'</li>
+  <li>Créer un fichier str_case.c</li>
+  <li>Implémenter le programme dans le fichier c créé</li>
+  <li>Le compiler, corriger les erreurs si besoin.</li>
+  <li>Le copier dans son répertoire de rendu.</li>
+</ol>
+
+
+</div>
+
+</div>
+<br class="Cleaner" />
+
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,12 @@
+#include <stdio.h>
+#include <math.h>
+
+int main( int argc, char**argv){
+
+	printf( "Hello World\n" );
+	double i =2;
+ double puissance = pow( -2, i  );
+	printf( "%d\n", puissance );
+	
+	return 0;
+}

@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="html" xmlns="http://www.w3.org/1999/xhtml">
+
+<head id="head" >
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>
+ TP2. Ex08. Multiplication table
+</title>
+
+<meta name="keywords" content=""/>
+<meta name="description" content=""/>
+<link href="http://10.34.128.10:8181/res/styles/default/style.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/node.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/tutorial.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/menu.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/context-menu.css" rel="stylesheet" type="text/css"/><script src="http://10.34.128.10:8181/res/js/prototype.js"></script><script src="http://10.34.128.10:8181/res/js/scriptaculous.js"></script><script src="http://10.34.128.10:8181/res/js/essilab.js"></script>
+
+
+</head>
+<body id="body" >
+
+<div id="container" >
+
+<div id="headerWrapper" >
+
+<div id="header" >
+
+
+
+
+
+
+
+<div id="menuGlobal" class="Menu ">
+	<ul>
+								
+	<li class="MenuItem">
+		<a href="http://10.34.128.10:8181/cours">Support de cours</a>
+			</li>
+								
+	<li class="MenuItem">
+		<a href="http://10.34.128.10:8181/exercises">Exercices</a>
+			</li>
+								
+	<li class="MenuItem">
+		<a href="http://10.34.128.10:8181/student/_points">Résultats</a>
+			</li>
+			</ul>
+</div>
+
+</div>
+</div>
+<div id="content" >
+
+<div class="ContentPane" >
+
+
+
+<div class="Tutorial">
+<h1>TP2. Ex08. Multiplication table</h1>
+<table>
+<tr><td>Temps de référence</td><td>10 mn</td></tr>
+<tr><td>Temps estimé</td><td>20 mn</td></tr>
+<tr><td>Temps max</td><td>40 mn</td></tr>
+<tr><td>Répertoire de rendu</td><td>~/seminaire/tp2/multiplication_table</td></tr>
+<tr><td>Fichier(s) de rendu</td><td>multiplication_table.c</td></tr>
+</table>
+
+<h2>Enoncé</h2>
+<p>Réaliser un programme qui affiche la table de multiplication sur un intervalle formé entre les deux valeurs entières fournies en paramètres. Il n'y a pas de relation d'ordre entre le premier et le second paramètre.</p>
+
+<h2>Exemple de résulat(s) attendu(s)</h2>
+
+<pre class="ScreenConsole">
+./monProgramme 5 5
+25
+./monProgramme 2 6
+4 6 8 10 12 
+6 9 12 15 18 
+8 12 16 20 24 
+10 15 20 25 30 
+12 18 24 30 36
+./monProgramme 2 -3
+4 2 0 -2 -4 -6 
+2 1 0 -1 -2 -3 
+0 0 0 0 0 0 
+-2 -1 0 1 2 3 
+-4 -2 0 2 4 6 
+-6 -3 0 3 6 9 
+./monProgramme 2
+Nombre de paramètres insuffisants
+</pre>
+
+<h2>Travail attendu</h2>
+<ol>
+<li>Dans le répertoire 'tp2', créer un sous répertoire 'multiplication_table'</li>
+<li>Créer un fichier multiplication_table.c</li>
+<li>Implémenter le programme dans le fichier c créé</li>
+<li>Le compiler, corriger les erreurs si besoin.</li>
+<li>Le copier dans son répertoire de rendu.</li>
+</ol>
+
+</div>
+</div>
+<br class="Cleaner" />
+
+</div>
+</div>
+</body>
+</html>

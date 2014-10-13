@@ -1,0 +1,160 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="html" xmlns="http://www.w3.org/1999/xhtml">
+
+<head id="head" >
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>
+ TP4. Ex5. Listes chaines, fonctions utilitaires
+</title>
+
+<meta name="keywords" content=""/>
+<meta name="description" content=""/>
+<link href="http://10.34.128.10:8181/res/styles/default/style.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/node.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/tutorial.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/menu.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/context-menu.css" rel="stylesheet" type="text/css"/><script src="http://10.34.128.10:8181/res/js/prototype.js"></script><script src="http://10.34.128.10:8181/res/js/scriptaculous.js"></script><script src="http://10.34.128.10:8181/res/js/essilab.js"></script>
+
+
+</head>
+<body id="body" >
+
+<div id="container" >
+
+<div id="headerWrapper" >
+
+<div id="header" >
+
+
+
+
+
+
+
+<div id="menuGlobal" class="Menu ">
+	<ul>
+								
+	<li class="MenuItem">
+		<a href="http://10.34.128.10:8181/cours">Support de cours</a>
+			</li>
+								
+	<li class="MenuItem">
+		<a href="http://10.34.128.10:8181/exercises">Exercices</a>
+			</li>
+								
+	<li class="MenuItem">
+		<a href="http://10.34.128.10:8181/student/_points">Résultats</a>
+			</li>
+			</ul>
+</div>
+
+</div>
+</div>
+<div id="content" >
+
+<div class="ContentPane" >
+
+
+
+<div class="Tutorial">
+<h1>TP4. Ex5. Listes chainées, fonctions utilitaires</h1>
+<table>
+<tr><td>Temps de référence</td><td>45 mn</td></tr>
+<tr><td>Temps estimé</td><td>1h23 mn</td></tr>
+<tr><td>Temps max</td><td>2h34 mn</td></tr>
+<tr><td>Répertoire de rendu</td><td>~/seminaire/tp4/linked_list_create</td></tr>
+<tr><td>Fichier(s) de rendu</td><td>main.c, linked_list.h, linked_list.c</td></tr>
+</table>
+
+<h2>Enoncé</h2>
+
+<p>Les listes chaînées sont un exemple typique de cas d'utilisation des structutes autoréférées. Elles permettent de stocker un nombre théoriquement illimité d'éléments.
+</p>
+
+<ul>
+<li>Réaliser une structure s_maillon contenant :
+<ul>
+<li>une variable de type int nommé data</li>
+<li>une variable de type pointeur vers s_maillon nommé next</li>
+</ul>
+Puis définissez la comme un type t_maillon.
+</li>
+<li>Réaliser la méthode new_maillon(int data), elle devra allouer l'espace mémoire pour un nouveau t_maillon et affecter la valeur transmise en paramètre au maillon, et initialiser le pointeur à NULL</li>
+<li>Réaliser la méthode linked_list_size(t_maillon*), elle devra renvoyer la taille de la liste.</li>
+<li>Réaliser la méthode linked_list_display(t_maillon*), elle devra afficher à l'écran le contenu de la liste chainée tel que dans l'exemple</li>
+<li>Réaliser la méthode linked_list_get_by_position(t_maillon*, unsigned int, int* find), et retournera la valeur à la position recherchée. attribuera a la variable *find : 1 si trouvé, 0  si non trouvé.( 0 &lt;= position &lt; size() )</li>
+<li>Réaliser la méthode linked_list_get_by_value(t_maillon*, int), et retourner la position de la première occurence de la valeur trouvée. -1 si non trouvé.</li>
+<li>Réaliser la méthode linked_list_free(t_maillon**), elle devra libérer l'espace occupé en mémoire par la liste chaînée (tous les maillons) </li>
+</ul>
+
+<strong>Vous devrez compléter les fichiers suivant: 
+</strong>
+<br/>
+linked_list.h
+<pre class="ScreenEditor">
+t_maillon* new_maillon(int data);
+unsigned int linked_list_size(t_maillon* maillon);
+void linked_list_display(t_maillon* maillon);
+// Return -1 if not found.
+int linked_list_get_by_value(t_maillon* maillon, int value);
+// Return value, set found to 0 if not found, another value if found.
+int linked_list_get_by_position(t_maillon* maillon, unsigned int index, int* found);
+void linked_list_free(t_maillon** maillon);
+</pre>
+linked_list.c
+<pre class="ScreenEditor">
+#include "linked_list.h"
+/* Implements your functions here.*/
+</pre>
+
+main.c
+<pre class="ScreenEditor">
+#include &lt;stdio.h&gt;
+#include "linked_list.h"
+
+int main(int argc, char** argv) {
+  
+  t_maillon* list = new_maillon(4);
+  list-&gt;next = new_maillon(19);
+  list-&gt;next-&gt;next = new_maillon(2);
+  list-&gt;next-&gt;next-&gt;next = new_maillon(7);
+
+  int found;
+  
+  printf("Taille liste : %u ", linked_list_size(list));
+  printf("Valeur position 2 : %d ", linked_list_get_by_position(list, 2));
+  printf("Position valeur 19: %d ", linked_list_get_by_value(list, 19, &found));
+  
+  linked_list_display(list);
+  linked_list_free(&amp;list);
+  return (0);
+}
+</pre>
+
+<p>Vous compilerez le programme avec gcc : </p>
+<pre class="ScreenConsole">
+gcc -Wall main.c linked_list.c
+</pre>
+<h2>Exemple de résulat(s) attendu(s)</h2>
+
+<pre class="ScreenConsole">
+Taille liste : 4
+Valeur position 2 : 2
+Position valeur 19: 1
+4 19 2 7
+</pre>
+
+<h2>Travail attendu</h2>
+<ol>
+  <li>Dans le répertoire 'tp4', créer un sous répertoire 'linked_list_create'</li>
+  <li>Créer les fichiers main.c, linked_list.h, linked_list.c</li>
+  <li>Implémenter le programme dans le fichier c adéquate</li>
+  <li>Les compiler, corriger les erreurs si besoin.</li>
+  <li>Les copier dans leur répertoire de rendu.</li>
+</ol>
+
+</div>
+
+</div>
+<br class="Cleaner" />
+
+</div>
+</div>
+</body>
+</html>

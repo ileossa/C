@@ -1,0 +1,815 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="html" xmlns="http://www.w3.org/1999/xhtml">
+
+<head id="head" >
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>
+ Le langage C - Les types dérivés
+</title>
+
+<meta name="keywords" content=""/>
+<meta name="description" content=""/>
+<link href="http://10.34.128.10:8181/res/styles/default/style.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/node.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/tutorial.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/menu.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/context-menu.css" rel="stylesheet" type="text/css"/><script src="http://10.34.128.10:8181/res/js/prototype.js"></script><script src="http://10.34.128.10:8181/res/js/scriptaculous.js"></script><script src="http://10.34.128.10:8181/res/js/essilab.js"></script>
+
+
+</head>
+<body id="body" >
+
+<div id="container" >
+
+<div id="headerWrapper" >
+
+<div id="header" >
+
+
+
+
+
+
+
+<div id="menuGlobal" class="Menu ">
+	<ul>
+								
+	<li class="MenuItem">
+		<a href="http://10.34.128.10:8181/cours">Support de cours</a>
+			</li>
+								
+	<li class="MenuItem">
+		<a href="http://10.34.128.10:8181/exercises">Exercices</a>
+			</li>
+								
+	<li class="MenuItem">
+		<a href="http://10.34.128.10:8181/student/_points">Résultats</a>
+			</li>
+			</ul>
+</div>
+
+</div>
+</div>
+<div id="content" >
+
+<div class="ContentPane" >
+
+
+<div class="Tutorial">
+<h1>COURS N°3 - Les types dérivés, les pointeurs</h1>
+
+<p>Comme nous l'avons vu dans le cours précédent, le C fourni un ensemble de types primitifs ; entiers, caractères, flottants, pointeurs...). A partir de ceux ci, on peut créer de nouveaux types qui permettent de représenter des ensembles organisés de données.</p>
+
+<h2>Les énumérations</h2>
+
+<p>Les énumérations permettent de définir un type pour des variables qui ne sont
+affectées qu'à un nombre fini de valeurs.</p>
+
+<p>Un objet de type énumération est défini par le mot-clef enum et un identificateur
+de modèle, suivi de la liste des valeurs que peut prendre cet objet :</p>
+
+<pre class="ScreenEditor">
+enum modele {constante1, constante2,. . . ,constanten} ;
+</pre>
+
+En réalité, les objets de type enum sont représentés comme des int. Les valeurs
+possibles constante1, constante2,. . . ,constanten sont codées par des entiers de
+<strong>0 à n-1.</strong>
+
+<p>Dans l’exemple suivant, le type enum boolean associe l’entier 0 `a la valeur
+FALSE et l’entier 1 `a la valeur TRUE.</p>
+
+<pre class="ScreenEditor">
+#include &lt;stdio.hagt;
+enum boolean {FALSE, TRUE}; //d´efinition de l’enum´eration boolean
+int main () {
+  enum boolean b = TRUE; //declaration
+  printf("b = %d\n",b);
+  return 0;
+}
+</pre>
+
+<pre class="ScreenConsole">
+b = 1
+</pre>
+<p>
+On peut également fixer la valeur numérique correspdante à l'identifiant d'énumation</p>
+
+<pre class="ScreenEditor">
+enum boolean {FALSE = 12, TRUE = 23};
+</pre>
+
+<h2>Les tableaux</h2>
+
+<p>Un tableau est un ensemble fini d’éléments de même type, stockés de manière contiguës en mémoire.</p>
+
+
+<p>La déclaration d’un tableau à une dimension s'appel un <strong>vecteur</strong> et s'effectue la manière suivante :</p>
+
+<pre class="ScreenEditor">
+type nom-du-tableau[nombre-´el´ements];
+</pre>
+
+<p>Où <strong>nombre-éléments</strong> est une expression constante entière positive correspondant
+au nombre maximal d’élément dans le tableau. On l’appelle parle de dimension ou taille du <strong>vecteur</strong></p>
+
+
+
+<p>Par exemple, la déclaration int tab[10]; indique que tab est un tableau de
+10 éléments de type int. </p>
+
+<p>Cette d´eclaration alloue en mémoire pour l’objet tab un espace de 10*4 octets consécutifs.
+</p>
+
+<p>Pour plus de clarté, il est recommandé de donner un nom à la constante nombre-éléments par une directive au préprocesseur</p>
+
+<pre class="ScreenEditor">
+#define TAILLE 20 //noter l’absence de ";"
+int t[TAILLE]; //t tableau de TAILLE int
+</pre>
+
+
+<p>Voici quelques points importants à retenir :</p>
+
+<ul>
+  <li>On accède à un élément du tableau en lui appliquant l’opérateur <strong>[]</strong></li>
+  <li>les index des eléments d’un tableau vont de 0 à nombre-éléments-1</li>
+  <li>la taille d’un tableau doit être connue <strong>statiquement</strong> par le compilateur.</li>
+</ul>
+
+<strong>Impossible donc d’´ecrire int t[n] ou n est une variable.</strong>
+
+<p>Ainsi, le programme suivant imprime les éléments du tableau tab :</p>
+
+<pre class="ScreenEditor">
+#define N 10
+int main() {
+  int tab[N];
+  int i;
+  ...
+  for (i = 0; i &lt; N; i++)
+    printf("tab[%d] = %d\n",i,tab[i]);
+  ...
+}
+</pre>
+
+<p>Un tableau correspond en fait à un pointeur vers le premier él2ment du tableau.</p>
+
+<p>
+Ce pointeur est constant, ce qui implique en particulier qu’aucune opération globale
+n’est autorisée sur un tableau. Et notamment, un tableau ne peut pas figurer
+à gauche d’un opérateur d’affectation.
+</p>
+
+<strong>On ne peut pas écrire ”tab1 = tab2;”, il faut effectuer l’affectation pour chacun des éléments du tableau.</strong>
+
+
+<h3>Initialisation d’un tableau</h3>
+
+On peut initialiser un tableau lors de sa d´eclaration par une liste de constantes
+de la façon suivante :
+
+<pre class="ScreenEditor">
+type nom-du-tableau[N] = {constante1,constante2,. . . , constanteN} ;
+</pre>
+
+<p>Par exemple :</p>
+
+<pre class="ScreenEditor">
+#define N 5
+int t[N] = {14, 27, 3, 18, 81};
+int main() {
+int i;
+
+for (i = 0; i &lt; N; i++)
+  printf("t[%d] = %d\n",i,t[i]);
+  ...
+}
+</pre>
+
+<p>
+La figure suivante montre ce qu’il se passe en pratique au niveau de la mémoire
+lors de l’initialisation du tableau t. En supposant qu’une variable du type int
+occupe 4 octets (c’est à dire : sizeof(int)=4), alors le tableau t réservera
+N ∗ 4 = 5 ∗ 4 = 20 octets en mémoire.
+</p>
+
+<img src="http://10.34.128.10:8181/img/array.png"/>
+<p>
+On peut donner moins de valeurs d’initialisations que le tableau ne comporte
+d’éléments. Dans ce cas, les premiers éléments seront initialisés avec les valeurs
+indiquées, tandis que les autres seront initalis´ees à zéro. 
+</p>
+
+<p>Exemple :</p>
+<pre class="ScreenEditor">
+#define N 10
+int t[N] = {14,27};
+</pre>
+
+<p>
+Les éléments d’indice 0 et 1 seront initialisées respectivement avec les valeurs 14
+et 27, les autres éléments (d’indices 2 `a 9) seront initialisés à zéro.
+</p>
+
+<h3>Réservation automatique</h3>
+
+<p>
+Si la dimension n’est pas indiquée explicitement lors de l’initialisation, alors le
+compilateur réserve automatiquement le nombre d’octets n´ecessaires. 
+</p>
+
+<p>Exemple :</p>
+
+<pre class="ScreenEditor">
+int A[] = {1, 2, 3, 4, 5}; //réservation de 5*sizeof(int) octets
+float B[] = {-1.05, 3.3, 87e-5, -1.3E4}; //réservation de
+//4*sizeof(float) octets
+</pre>
+
+
+<h2>Cas particulier des tableaux de caractères</h2>
+
+La représentation interne d’une chaîne de caractères est terminée par le symbole
+null <strong>’\0’</strong>.
+
+<p>Ainsi, pour un texte de n caractères, il faut prévoir n + 1 octets.</p>
+
+<ul>
+
+<li>
+  <p>
+    un tableau de caractères peut être initialisée comme une liste de constantes caractères.
+  </p>
+  <p>
+    Exemple :
+  </p>  
+  <pre class="ScreenEditor">
+    char ch[3] = {’a’, ’b’, ’c’};
+  </pre>
+  <p>Cela devient évidemment très vite lourd.</p>
+</li>
+<li>
+  <p>On peut aussi initialiser un tableau de caract`ere par une chaîne littérale :</p>
+  <pre class="ScreenEditor">
+    char ch[8]="exemple"; 
+  </pre>
+  <p>La figure suivante montre le contenu de la mémoire à la suite de cette initialisation.</p>
+  <img src="http://10.34.128.10:8181/img/character-array.png"/>
+</li>
+<li>
+<p>on peut d´eclarer une taille supérieure à celle de la chaîne littérale :</p>
+
+<pre class="ScreenEditor">
+char ch[100]="exemple";
+</pre>
+
+</li>
+<li>
+<p>
+enfin, on peut ne pas indiquer la taille et le compilateur comptera le nombre
+de caractères de la chaîne littérale pour dimensionner correctement le tableau
+(sans oublier le caractère null ’\0’). Exemple :
+</p>
+<pre class="ScreenEditor">
+char ch[]="ch aura 22 caracteres";
+</pre>
+
+</li>
+<li>
+<p>
+Il est également possible de donner une taille égale au nombre de caractères
+de la chaîne. Dans le cas, le compilateur comprend qu’il ne faut pas rajouter
+le null en fin de chaîne. 
+Exemple : 
+</p>
+<pre class="ScreenEditor">
+char enseignant[7]="michael";
+</pre>
+<p>Mais dans ce cas, attention aux surprises ! Considérer l’exemple suivant :</p>
+
+<pre class="ScreenEditor">
+#include &lt;stdio.h&gt;
+int main() {
+  char t1[7]="michael"; //sans ’\0’
+  char t2[]="frederic"; //avec ’\0’
+  printf("t1 (de taille %i)=%s\n",sizeof(t1)/sizeof(char),t1);
+  printf("t2 (de taille %i)=%s\n",sizeof(t2)/sizeof(char),t2);
+  return 0;
+}
+</pre>
+
+<p>Ce programme renverra :</p>
+
+<pre class="ScreenConsole">
+t1 (de taille 7)=michaelß¨uP°A@˘ad@ ^ußXA^ußÆ-@
+t2 (de taille 9)=frederic
+</pre>
+<p>
+En effet, pour t1, toute la zone mémoire est affichée jusqu’à ce que le caractère
+null soit rencontré.
+</p>
+</li>
+</ul>
+
+<h2>Passage de tableau en paramètre</h2>
+
+<p>
+Puisqu’un identificateur de type tableau correspond à l’adresse du premier élément
+du tableau, c’est cette adresse qui est passée en paramètre
+formel. Considérons par exemple une fonction print_tab qui affiche le contenu
+d’un tableau d’entiers :
+</p>
+
+<pre class="ScreenEditor">
+#include &lt;stdio.h&gt;
+/* Affiche le contenu du tableau d’entiers tab ayant nb_elem composantes */
+void print_tab(int tab[], int nb_elem) {
+  int i; //compteur
+  for (i=0; i &lt; nb_elem; i++) 
+  printf("tab[%i]=%i\n",i,tab[i]);
+}
+#define TAILLE 4
+int main(int argc, char** argv) {
+  int t[TAILLE] = {1, 2, 3, 4};
+  print_tab(t, TAILLE);
+  return (0);
+}
+</pre>
+
+<p>
+Dans le prototype d’une fonction, l’écriture int tab[] est strictement équivalente
+à int * tab
+</p>
+
+<h3>Modification des éléments d’un tableau passé en paramètre</h3>
+
+<p>
+Puisque finalement on passe un pointeur en paramètre, on peut modifier au
+besoin le contenu du tableau. On peut écrire par exemple :
+</p>
+<pre class="ScreenEditor">
+#include &lt;stdio.h&gt;
+void print_tab(int tab[], int nb_elem) {...}
+  /* incr´emente chaque composantes d tableau */
+  void incr_tab(int tab[], int nb_elem) {
+  int i;
+  for (i=0; i &lt; nb_elem; i++) tab[i]++;
+}
+
+#define TAILLE 4
+int main(int argc, char** argv) {
+  int t[TAILLE] = {1, 2, 3, 4};
+  incr_tab(t, TAILLE);
+  print_tab(t, TAILLE);
+  return 0;
+}
+</pre>
+
+<h3>
+Interdire la modification des éléments d’un tableau passée en paramètre
+</h3>
+
+<p>
+On utilise pour cela le mot-clé const qui spécifie que la variable associée ne
+peut pas être modifiée. 
+</p>
+<p>Exemple :</p>
+
+<pre class="ScreenEditor">
+const int i = 14; //cette variable ne pourra plus ^etre modifi´ee
+</pre>
+
+<p>
+On voit tout de suite l’intérêt de <strong>const</strong> pour les paramètres de fonction.</p> 
+
+<p>Ainsi,
+dans la procédure print_tab, on peut exprimer le fait que cette procédure ne
+doit pas modifier le contenu du tableau passé en paramètre. Le prototype de la
+procédure deviendra pour cela :
+</p>
+
+<pre class="ScreenEditor">
+void print_tab(const int tab[], int nb_elem);
+</pre>
+
+
+<h2>Tableaux multidimensionnels</h2>
+
+<p>
+En C, un tableau multidimensionnel est considéré comme un tableau dont les
+éléments sont eux-même des tableaux. Un tableau à deux dimensions se déclare
+donc de la manière suivante :
+</p>
+<pre class="ScreenEditor">
+int mat[10][20];
+</pre>
+<p>
+En faisant le rapprochement avec les mathématiques, on peut dire que mat est
+une matrice de 10 lignes et de 20 colonnes. Les mêmes considérations que celles
+que nous avons d´eveloppé sur les tableaux unidimensionnels s’appliquent :
+</p>
+<ul>
+<li>
+A la déclaration, le compilateur allouera une zone mémoire permettant de
+stocker de manière contigüe 10 tableaux de 20 entiers, soit 200 entiers ;
+</li>
+<li>toute référence ultérieure à mat sera convertie en l’adresse de sa première
+ligne, avec le type pointeur vers un tableau de 20 int
+</li>
+</ul>
+
+<p>
+On accède à un élément du tableau par l’expression mat[i][j].
+Pour initialiser un tableau à plusieurs dimensions à la compilation, on utilise
+une liste dont chaque élément est une liste de constantes :
+</p>
+
+<pre class="ScreenEditor">
+#include &lt;stdio.h&gt;
+#define L 3 //nombre de lignes
+#define C 2 //nombre de colonnes
+short tab[L][C] = {{1, 2}, {14, 15}, {100, 200}};
+int main() {
+  int i, j;
+  for (i = 0 ; i &lt; L; i++)
+    for (j = 0; j &lt; C; j++)
+      printf("tab[%d][%d]=%d\n",i,j,tab[i][j]);
+  return (0);
+}
+</pre>
+
+<pre class="ScreenConsole">
+tab[0][0]=1
+tab[0][1]=2
+tab[1][0]=14
+tab[1][1]=15
+tab[2][0]=100
+tab[2][1]=200
+</pre>
+
+<p>La figure suivante montre le contenu de la mémoire à la suite de cette initialisation.</p>
+
+<img src="http://10.34.128.10:8181/img/matrice.png"/>
+
+<p>
+On comprend bien avec cette figure que si l’on souhaite utiliser la réservation
+automatique, il faudra quand même spécifier toutes les dimensions sauf la première : 
+le nombre de lignes dans le cas d’un tableau bi-dimentionnel.
+</p>
+
+<p>réservation de 2*3*sizeof(int) = 12 octets</p>
+
+<pre class="ScreenEditor">
+short int mat[][3] = {
+                      {1, 0, 1},
+                      {0, 1, 0}
+                     };
+</pre>
+
+<h2>Cas des tableaux de chaînes de caractères</h2>
+
+<p>On peut initialiser un tableau de ce type par :</p>
+
+<pre class="ScreenEditor">
+char * jour[] = {"lundi", "mardi", "mercredi", "jeudi",
+"vendredi", "samedi", "dimanche"};
+</pre>
+
+<p>L’allure du tableau jour est illustré dans la figure</p>
+
+<img src="http://10.34.128.10:8181/img/character_matrice.png"/>
+
+<strong>
+A noter que cette écriture directe n’est possible qu’avec les char.
+</strong>
+
+<p>En effet, Il est impossible d’´ecrire par exemple :</p>
+
+<pre class="ScreenEditor">
+int * tab[] = {{1}, {1,2}, {1,2,3}};
+</pre>
+
+<h2>Les structures</h2>
+
+<p>Une structure est une suite finie d’objets de types différents. Ce mécanisme permet
+de grouper un certain nombre de variables de types différents au sein d’une
+même entitée. Contrairement aux tableaux, les différents éléments d’une structure
+n’occupent pas n´ecessairement des zones contigües en mémoire. Chaque
+élément de la structure, appelé membre ou champ, est d´esigné par un identificateur.
+L’utilisation pratique d’une structure se déroule de la façon suivante :
+</p>
+
+<ul>
+<li>
+On commence par déclarer la structure elle-mˆeme. Le mod`ele g´en´eral de
+cette d´eclaration est le suivant :
+<pre class="ScreenEditor">
+struct nom structure {
+type_1 membre1 ;
+type_2 membre2 ;
+...
+type_n membren ;
+} ;
+</pre>
+</li>
+<li>Pour d´eclarer un objet de type structure correspondant au mod`ele pr´ec´edent,
+on utilise la syntaxe :
+<pre class="ScreenEditor">
+struct nom structure {
+type_1 membre1 ;
+type_2 membre2 ;
+...
+type_n membren ;
+} identificateur-objet ;
+</pre>
+
+</li>
+<li>
+On accède aux différents membres d’une structure grâce à l’opéerateur
+membre de structure, noté ”.”. Le i-ème membre de objet est désigné par
+l’expression :
+<pre class="ScreenEditor">
+identificateur-objet.membrei
+</pre>
+</li>
+</ul>
+<p>
+On peut effectuer sur le i-`eme membre de la structure toutes les op´erations
+valides sur des donn´ees de type type_i.
+</p>
+<p>
+Ainsi, le programme suivant d´efinit la structure complexe, compos´ee de deux
+champs de type double et calcule la norme d’un nombre complexe.
+</p>
+<pre class="ScreenEditor">
+#include &lt;math.h&gt;
+struct point {
+  unsigned int x; 
+  unsigned int y; 
+}; // ne pas oublier le ";"
+int main(int argc, char** argv) {
+  struct point pt; //déclaration d’un objet de type struct point
+  printf("Coordonnées x:%d y:%d), pt.x, pt.y);
+}
+</pre>
+
+<h3>Initialisation et affectation d’une structure</h3>
+
+<p>
+Les règles d’initialisation d’une structure lors de sa déclaration sont les mêmes
+que pour les tableaux. On écrit par exemple :
+</p>
+
+<pre class="ScreenEditor">
+struct point pt = {22 , 15};
+</pre>
+
+<p>A noter qu’à la différence des tableaux, on peut appliquer l’opérateur d’affectation
+aux structures. Dans le contexte précédent, on peut ´ecrire :</p>
+<pre class="ScreenEditor">
+int main(int argc, char** argv) {
+  struct point pt1, pt2;
+  ...
+  pt1 = pt2;
+}
+</pre>
+
+<h3>Comparaison de structures</h3>
+
+<p>Aucune comparaison n’est possible sur les structures, en particulier, on ne peut
+appliquer les opérateurs == ou !=.</p>
+
+<h3>Tableau de structures</h3>
+
+On déclare un tableau dont les composantes sont des structures de la même
+façon qu’on déclarerait un tableau d’éléments de type simple. Exemple :
+
+<pre class="ScreenEditor">
+struct personne {
+  char nom[20];
+  char prenom[20];
+};
+...
+struct personne t[100]; //tableau de 100 personnes
+</pre>
+
+<p>Pour référencer le nom de la personne qui a l’index i, on écrira :</p>
+
+<pre class="ScreenEditor">
+t[i].nom
+</pre>
+
+<h2>Les unions</h2>
+<p>
+Il est parfois nécessaire de manipuler des variables auxquelles on désire affecter
+des valeurs de types différents.</p>
+<p> Une union désigne un ensemble de variables
+de types différents susceptibles d’occuper alternativement une même zone mémoire.
+</p>
+<p>
+Une union permet donc de définir un objet comme pouvant être d’un
+type au choix parmi un ensemble fini de types. 
+</p>
+<p>Si les membres d’une union
+sont de longueurs différentes, la place réservée en mémoire pour la représenter
+correspond à la taille du membre le plus grand.
+</p>
+
+<h3>Déclaration d'une union</h3>
+<p>
+La déclaration et la définition d’une union ne diffèrent de celles d’une structure
+que par l’utilisation du mot-cl´e union (qui remplace le mot-clé struct).
+Dans l’exemple suivant, la variable hier de type union jour peut être soit un
+caractère, soit un entier (mais pas les deux `a la fois) :
+</p>
+
+<pre class="ScreenEditor">
+#include &lt;stdio.h&gt;
+union jour {
+char lettre;
+int numero;
+};
+
+int main(int argc, char** argv) {
+  union jour hier, demain;
+  hier.lettre = ’J’; //jeudi
+  printf("hier = %c\n",hier.lettre);
+  hier.numero = 4;
+  demain.numero = (hier.numero + 2) % 7;
+  printf("demain = %d\n",demain.numero);
+  return 0;
+}
+</pre>
+
+<p>
+On aura compris qu’on accède aux éléments d’une union avec le même opérateur
+de sélection (. ou -&gt;) que celui utilisé dans les structures.
+</p>
+
+<h3>Utilisation pratique des unions</h3>
+
+<p>Lorsqu’il manipule des unions, le programmeur n’a malheureusement aucun
+moyen de savoir à un instant donné quel est le membre de l’union qui possède
+une valeur.</p>
+<p>
+Pour être utilisable, une union doit donc toujours être associée à une variable
+dont le but sera d’indiquer le membre de l’union qui est valide. En pratique,
+une union et son indicateur d’état sont généralement englobés `a l’intérieur d’une
+structure.
+</p>
+
+<p> Exemple :</p>
+<pre class="ScreenEditor">
+#include &lt;stdio.h&gt;
+enum etat {CARAC, ENTIER};
+/* struct jour a deux membres ’indicateur’ de type int,
+et ’day’ de type union de char et de int */
+struct jour {
+  enum etat indicateur; //indique ce qui est dans j
+  union {
+  char lettre;
+  int numero;
+} day;
+};
+
+/* Affiche le contenu de la variable d, nomm´ee name */
+void print_jour(struct jour d, char * name){
+  if (d.indicateur == CARAC) 
+    printf("%s = %c\n",name,d.day.lettre);
+  else 
+    if (d.indicateur == ENTIER)
+      printf("%s = %i\n",name,d.day.numero);
+    else printf("Erreur!\n");
+}
+
+int main(int argc, char** argv) {
+  struct jour ex1, ex2; //d´eclaration
+  //utilisation
+  ex1.indicateur = CARAC;
+  ex1.day.lettre = ’j’; //jeudi
+  print_jour(ex1, "ex1");
+  ex2.indicateur = ENTIER;
+  ex2.day.numero = 4;
+  print_jour(ex2, "ex2");
+  return 0;
+}
+</pre>
+<p>L’exécution de ce programme renverra :</p>
+
+<pre class="ScreenConsole">
+ex1 = j
+ex2 = 4
+</pre>
+
+<h3>Une méthode pour alléger l’accès aux membres</h3>
+
+<p>
+Quand une union est dans une structure (comme c’est la cas dans l’exemple
+précédent), on aura noter que l’accès aux membres de l’union est relativement
+lourd (ex : d.day.numero pour accéder au membre numero). On peut alléger
+cette écriture en utilisant les facilités du préprocesseur.
+</p>
+<pre class="ScreenEditor">
+#define L day.lettre
+#define N day.numero
+...
+ex1.indicateur = CARAC;
+ex1.L = ’j’; //initialisation de ex1 `a jeudi
+</pre>
+
+<h2>Les champs sur bits</h2>
+
+<p>Il est possible en C de spécifier la longueur des champs d’une structure au bit près si ce champ est de type entier (int ou unsigned int). </p>
+<p>
+Cela se fait en précisant le nombre de bits du champ avant le ”;” qui suit sa déclaration :
+</p>
+<pre class="ScreenEditor">
+struct my_struct {
+  type [membre] : nb_bits ;
+  ...
+}
+</pre>
+
+<p>
+On utilise typiquement les champs de bits en programmation système, pour
+manipuler des registres particuliers de la machine etc... Par exemple, imaginons
+le registre suivant :
+</p>
+
+<img src="http://10.34.128.10:8181/img/champs_bit.png"/>
+
+<p>Ce registre peut se d´ecrire de la mani`ere suivante :</p>
+
+<pre class="ScreenEditor">
+struct registre {
+  unsigned int masque : 3;
+  signed int privilege : 6;
+  unsigned int : 6; /* inutilis´e */
+  unsigned int ov : 1;
+};
+</pre>
+<p>
+Le champ masque sera codé sur 3 bits, privilege sur 6 bits etc... A noter
+que l’ordre dans lequel les champs sont placés à l’intérieur de ce mot dépend
+de l’implémentation.
+</p>
+<p>
+ On voit que le C accepte que l’on ne donne pas de nom
+aux champs de bits qui ne sont pas utilisées. Le champ ov de la structure ne
+peut prendre que les valeurs 0 ou 1.
+</p>
+<p>
+Aussi, si r est un objet de type struct
+registre, l’opération r.ov += 2 ; ne modifie pas la valeur du champ.
+Voici les quelques contraintes à respecter :
+</p>
+<ul>
+<li>La taille d’un champ de bits doit ˆetre inf´erieure au nombre de bits d’un entier
+(long).</li>
+<li>un champ de bits n’a pas d’adresse ; on ne peut donc pas lui appliquer l’opérateur
+&amp;</li>
+</ul>
+
+<h2>Définition de synonymes de types avec typedef</h2>
+
+
+Pour alléger l’écriture des programmes, on peut affecter un nouvel identificateur
+à un type à l’aide du mot-clé typedef :
+<pre class="ScreenEditor">
+typedef type synonyme ;
+</pre>
+
+
+<p>Exemple :</p>
+
+<pre class="ScreenEditor">
+typedef unsigned char UCHAR;
+typedef struct { double x, y } POINT;
+typedef POINT *P_POINT; //pointeur vers un POINT
+</pre>
+
+<p>
+A partir de ce moment, l’identificateur UCHAR peut être utilisé comme une abbréviation pour le type unsigned char, 
+l’identificateur POINT peut être utilisé pour spécifier le type de structure associé et P_POINT 
+permet de caractériser un pointeur vers un POINT :
+</p>
+
+<pre class="ScreenEditor">
+UCHAR c1, c2, tab[100];
+POINT point;
+P_POINT pPoint;
+</pre>
+
+
+</div>
+
+
+
+
+
+
+
+</div>
+<br class="Cleaner" />
+
+</div>
+</div>
+</body>
+</html>

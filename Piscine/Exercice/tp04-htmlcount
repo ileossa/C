@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="html" xmlns="http://www.w3.org/1999/xhtml">
+
+<head id="head" >
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>
+ TP4 - html_count
+</title>
+
+<meta name="keywords" content=""/>
+<meta name="description" content=""/>
+<link href="http://10.34.128.10:8181/res/styles/default/style.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/node.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/tutorial.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/menu.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/context-menu.css" rel="stylesheet" type="text/css"/><script src="http://10.34.128.10:8181/res/js/prototype.js"></script><script src="http://10.34.128.10:8181/res/js/scriptaculous.js"></script><script src="http://10.34.128.10:8181/res/js/essilab.js"></script>
+
+
+</head>
+<body id="body" >
+
+<div id="container" >
+
+<div id="headerWrapper" >
+
+<div id="header" >
+
+
+
+
+
+
+
+<div id="menuGlobal" class="Menu ">
+	<ul>
+								
+	<li class="MenuItem">
+		<a href="http://10.34.128.10:8181/cours">Support de cours</a>
+			</li>
+								
+	<li class="MenuItem">
+		<a href="http://10.34.128.10:8181/exercises">Exercices</a>
+			</li>
+								
+	<li class="MenuItem">
+		<a href="http://10.34.128.10:8181/student/_points">Résultats</a>
+			</li>
+			</ul>
+</div>
+
+</div>
+</div>
+<div id="content" >
+
+<div class="ContentPane" >
+
+
+<div class="Tutorial">
+<h1>TP4 - html_count</h1>
+<table>
+<tr><td>Temps de référence</td><td>35 mn</td></tr>
+<tr><td>Temps estimé</td><td>1h10 mn</td></tr>
+<tr><td>Temps max</td><td>1h35 mn</td></tr>
+<tr><td>Répertoire de rendu</td><td>~/seminaire/tp4/html_count</td></tr>
+<tr><td>Fichier(s) de rendu</td><td>html_count.c</td></tr>
+</table>
+
+<h2>Enoncé</h2>
+
+<p>Parmi les fonctions mille et une fois indispensables (et introuvables) pour construire une page html, par exemple compter le nombre de caractères visibles sur la partie gauche de la page pour équilibrer la partie droite, voici la fonction qui htmlCount()</p>
+
+<p>Cette fonction a pour principal objectif de compter les caractères visibles d'une structure html_count</p>
+	<h3>Quelques remarques</h3>
+<ul>
+	<li>Les caractères à l'intérieur des balises ne doivent par être comptabilisés.</li>
+	<li>Seul un espace peut être comptabilisé entre deux caractères visibles (même s'il y en a plusieurs)</li>
+	<li>le html propose des caractères spéciaux <strong>&amp;lt;</strong> pour <strong>&lt;</strong>, <strong>&amp;raquo;</strong> pour <strong>&raquo;</strong> etc.., ils doivent être comptabilisés pour 1 </li>	
+	<li>Les premiers et derniers espaces ne doivent pas être comptabilisés </li>	
+<li>Exemple : html_count("&lt;a href="mon_lien"&gt; &amp;raquo; un lien &lt;/a&gt;") = 9 : &raquo; un lien</li>
+</ul>
+
+<p><b>ATTENTION : les expressions régulières ne sont PAS autorisées (à moins de recoder votre propre parser...)</b></p>
+
+<p>Le programme devra contenir une fonction de prototype :</p>
+
+<pre class="ScreenEditor">
+/*
+** arr1, the array to perform.
+*/
+int html_count(char* html);
+</pre>
+
+<h2>Travail attendu</h2>
+<ol>
+  <li>Dans le répertoire 'tp4', créer un sous répertoire 'html_count'</li>
+  <li>Créer un fichier html_count.c</li>
+  <li>Implémenter le programme dans le fichier c créé</li>
+  <li>Le compiler, corriger les erreurs si besoin.</li>
+  <li>Le copier dans son répertoire de rendu.</li>
+</ol>
+
+</div>
+</div>
+<br class="Cleaner" />
+
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="html" xmlns="http://www.w3.org/1999/xhtml">
+
+<head id="head" >
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>
+ TP3. Ex7. Est numérique ?
+</title>
+
+<meta name="keywords" content=""/>
+<meta name="description" content=""/>
+<link href="http://10.34.128.10:8181/res/styles/default/style.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/node.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/tutorial.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/menu.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/context-menu.css" rel="stylesheet" type="text/css"/><script src="http://10.34.128.10:8181/res/js/prototype.js"></script><script src="http://10.34.128.10:8181/res/js/scriptaculous.js"></script><script src="http://10.34.128.10:8181/res/js/essilab.js"></script>
+
+
+</head>
+<body id="body" >
+
+<div id="container" >
+
+<div id="headerWrapper" >
+
+<div id="header" >
+
+
+
+
+
+
+
+<div id="menuGlobal" class="Menu ">
+	<ul>
+								
+	<li class="MenuItem">
+		<a href="http://10.34.128.10:8181/cours">Support de cours</a>
+			</li>
+								
+	<li class="MenuItem">
+		<a href="http://10.34.128.10:8181/exercises">Exercices</a>
+			</li>
+								
+	<li class="MenuItem">
+		<a href="http://10.34.128.10:8181/student/_points">Résultats</a>
+			</li>
+			</ul>
+</div>
+
+</div>
+</div>
+<div id="content" >
+
+<div class="ContentPane" >
+
+
+
+<div class="Tutorial">
+<h1>TP3. Ex7. Est numérique ?</h1>
+<table>
+<tr><td>Temps de référence</td><td>10 mn</td></tr>
+<tr><td>Temps estimé</td><td>20 mn</td></tr>
+<tr><td>Temps max</td><td>30 mn</td></tr>
+<tr><td>Répertoire de rendu</td><td>~/seminaire/tp3/is_numeric</td></tr>
+<tr><td>Fichier(s) de rendu</td><td>is_numeric.c</td></tr>
+</table>
+
+<h2>Enoncé</h2>
+
+<p>
+Réaliser une fonction qui détermine si les caractères fournis en paramètre constituent une valeur numérique. Cette fonction devra être interfacée par un programme qui transmettra la chaine fourni en ligne de commande à la fonction et affichera le résultat.
+</p>
+
+<strong>Le prototype de la fonction à réaliser est le suivant:</strong>
+<pre class="ScreenEditor">
+ /*
+ ** input : the string to analyse
+ ** return 0 if false, 1 if true.
+ */
+ short is_numeric(char* input);
+</pre> 
+ 
+<h2>Exemple de résulat(s) attendu(s)</h2>
+
+<pre class="ScreenConsole">
+./monProgramme 12D4
+0
+./monProgramme 12.4
+1
+./monProgramme 15.4.5
+0
+./monProgramme -.15
+1
+./monProgramme +15
+1
+./monProgramme 1+5
+0
+./monProgramme
+Nombre de paramètres insuffisant
+</pre>
+
+<h2>Travail attendu</h2>
+<ol>
+  <li>Dans le répertoire 'tp3', créer un sous répertoire 'is_numeric'</li>
+  <li>Créer un fichier is_numeric.c</li>
+  <li>Implémenter le programme dans le fichier c créé</li>
+  <li>Le compiler, corriger les erreurs si besoin.</li>
+  <li>Le copier dans son répertoire de rendu.</li>
+</ol>
+
+
+</div>
+
+</div>
+<br class="Cleaner" />
+
+</div>
+</div>
+</body>
+</html>

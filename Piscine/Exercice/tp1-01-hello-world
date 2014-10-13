@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="html" xmlns="http://www.w3.org/1999/xhtml">
+
+<head id="head" >
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>
+ TP1. Ex2. Hello World
+</title>
+
+<meta name="keywords" content=""/>
+<meta name="description" content=""/>
+<link href="http://10.34.128.10:8181/res/styles/default/style.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/node.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/tutorial.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/menu.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/context-menu.css" rel="stylesheet" type="text/css"/><script src="http://10.34.128.10:8181/res/js/prototype.js"></script><script src="http://10.34.128.10:8181/res/js/scriptaculous.js"></script><script src="http://10.34.128.10:8181/res/js/essilab.js"></script>
+
+
+</head>
+<body id="body" >
+
+<div id="container" >
+
+<div id="headerWrapper" >
+
+<div id="header" >
+
+
+
+
+
+
+
+<div id="menuGlobal" class="Menu ">
+	<ul>
+								
+	<li class="MenuItem">
+		<a href="http://10.34.128.10:8181/cours">Support de cours</a>
+			</li>
+								
+	<li class="MenuItem">
+		<a href="http://10.34.128.10:8181/exercises">Exercices</a>
+			</li>
+								
+	<li class="MenuItem">
+		<a href="http://10.34.128.10:8181/student/_points">Résultats</a>
+			</li>
+			</ul>
+</div>
+
+</div>
+</div>
+<div id="content" >
+
+<div class="ContentPane" >
+
+
+
+<div class="Tutorial">
+<h1>TP1. Ex1. Hello World</h1>
+<table>
+<tr><td>Temps de référence</td><td>3 mn</td></tr>
+<tr><td>Temps estimé</td><td>10 mn</td></tr>
+<tr><td>Temps max</td><td>15 mn</td></tr>
+<tr><td>Répertoire de rendu</td><td>~/seminaire/tp1/hello_world</td></tr>
+<tr><td>Fichier(s) de rendu</td><td>hello_world.c</td></tr>
+</table>
+
+<h2>Enoncé</h2>
+
+<p>Un programme informatique se résume en un ensemble organisé d'instructions. Tout programme informatique a un début et une fin. En C, le point d'entée d'un programme est la fonction main. Et ceux, quelque soit sa taille. Ainsi dès que le programme sera exécuté à partir de la ligne de commande ou d'un environnement graphique, c'est la première instruction du bloc d'instruction de la fonction main qui sera exécuté.</p>
+
+<p>Ce première exercice vise à vous faire découvrir la structure minimum d'un programme écrit en langage C.</p>
+
+<strong>source : hello_world.c</strong>
+<pre class="ScreenEditor">
+#include &lt;stdio.h&gt;
+int main(int argc, char** argv){
+   printf("Hello World\n");
+   return 0;
+}
+</pre>
+
+<h2>Travail attendu</h2>
+<ol>
+<li>Sur votre poste de travail, et dans votre espace de travail, créez un répertoire '$HOME/seminaire/tp1/', puis un sous répertoire 'hello_world'</li>
+<li>Créer à l'intérieur un fichier hello_world.c, et éditez le.</li>
+<li>Recopier les sources ci-dessus à l'intérieur de ce programme.</li>
+<li>Sauvegarder le fichier</li>
+<li>A partir de l'interpréteur de commande (ou shell), et à l'aide de la commande 'cd', positionnez vous dans votre répertoire $HOME/seminaire/tp1/hello_world</li>
+<li>Procédez à l'étape de compilation en saisissant les lignes suivantes :
+<strong>Sous Windows</strong>
+<pre class="ScreenConsole">
+gcc hello_world.c -o hello_world.exe
+helloworld.exe
+</pre>
+<strong>Sous Linux</strong>
+<pre class="ScreenConsole">
+gcc hello_world.c -o hello_world
+chmod +x helloworld
+./helloworld
+</pre>
+<p>
+Si le programme fonctionne, « Hello World » devrait apparaître 	
+immédiatement en dessous dans l'interpréteur de commande. 
+Dans tous les 	autres cas vérifiez le code source et répéter l'étape 6.
+</p>
+</li>
+<li>
+Copier le fichier hello_world.c sur le serveur de rendu.
+<p>Connectez vous sur le serveur de rendu, puis</p>
+<strong>Création du répertoire</strong>
+<pre class="ScreenConsole">
+-su-4.0$ cd
+-su-4.0$ mkdir -p seminaire/tp1/hello_world
+-su-4.0$ cd seminaire/tp1/hello_world
+/home/michael/seminaire/tp1/hello_world
+-su-4.0$ exit
+</pre>
+<p><strong>Copie du fichier</strong></p>
+<strong>Sous Windows</strong>
+<p>à partir du répertoire $HOME/seminaire/tp1/hello_world</p>
+<pre class="ScreenConsole">
+pscp.exe ./hello_world.c  monlogin@ipserveur:seminaire/tp1/hello_world</pre>
+</li>
+<li>
+<p><strong>Vérification du transfert</strong></p>
+<p>Connectez vous sur le serveur de rendu, puis</p>
+<pre class="ScreenConsole">
+-su-4.0$ cd
+-su-4.0$ cd seminaire/tp1/hello_world
+-su-4.0$ ls
+hello_world.c
+-su-4.0$ exit
+</pre>
+
+</li>
+</ol>
+
+
+
+</div>
+</div>
+<br class="Cleaner" />
+
+</div>
+</div>
+</body>
+</html>

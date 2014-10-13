@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="html" xmlns="http://www.w3.org/1999/xhtml">
+
+<head id="head" >
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>
+ TP1. Ex3. String to numeric
+</title>
+
+<meta name="keywords" content=""/>
+<meta name="description" content=""/>
+<link href="http://10.34.128.10:8181/res/styles/default/style.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/node.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/tutorial.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/menu.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/context-menu.css" rel="stylesheet" type="text/css"/><script src="http://10.34.128.10:8181/res/js/prototype.js"></script><script src="http://10.34.128.10:8181/res/js/scriptaculous.js"></script><script src="http://10.34.128.10:8181/res/js/essilab.js"></script>
+
+
+</head>
+<body id="body" >
+
+<div id="container" >
+
+<div id="headerWrapper" >
+
+<div id="header" >
+
+
+
+
+
+
+
+<div id="menuGlobal" class="Menu ">
+	<ul>
+								
+	<li class="MenuItem">
+		<a href="http://10.34.128.10:8181/cours">Support de cours</a>
+			</li>
+								
+	<li class="MenuItem">
+		<a href="http://10.34.128.10:8181/exercises">Exercices</a>
+			</li>
+								
+	<li class="MenuItem">
+		<a href="http://10.34.128.10:8181/student/_points">Résultats</a>
+			</li>
+			</ul>
+</div>
+
+</div>
+</div>
+<div id="content" >
+
+<div class="ContentPane" >
+
+
+
+<div class="Tutorial">
+<h1>TP1. Ex3. String to numeric</h1>
+<table>
+<tr><td>Temps de référence</td><td>5 mn</td></tr>
+<tr><td>Temps estimé</td><td>15 mn</td></tr>
+<tr><td>Temps max</td><td>20 mn</td></tr>
+<tr><td>Répertoire de rendu</td><td>~/seminaire/tp1/string_to_numeric</td></tr>
+<tr><td>Fichier(s) de rendu</td><td>give_me_next.c</td></tr>
+</table>
+
+<h2>Enoncé</h2>
+
+<p>Lorsque l'on transmet des données en ligne de commande, le programme ne connait pas le type précis de ces données, pour lui ce sont des caractères. Par exemple 23 passé en ligne de commande sera une donnée considérée comme deux caractères contigües en mémoire, l'un ayant la valeur du symbole « 2 » et l'autre ayant la valeur du symbole « 3 » dans la table de caractère ASCII. Mais en aucun cas la valeur numérique 23. Pour récupérer la valeur 23 afin d'effectuer d'éventuelles manipulations, la librairie standard C (stdlib) propose la fonction atoi qui prends en paramètre une chaine de caractère et qui renvoi sa correspondance numérique.</p>
+<p>Le programme ci-dessous récupère la première donnée, la converti en valeur numérique grâce à la fonction atoi et affiche l'entier qui lui est immédiatement supérieur.</p>
+
+<strong>Exemple</strong>
+
+<pre class="ScreenEditor">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int main(int argc, char** argv){
+  if (2 > argc) {
+    printf("Nombre de parametres insuffisants\n");
+    return 1; 
+  }
+  int value = atoi(argv[1]); 
+  printf("Entier suivant : %i \n", value+1);
+  return 0;
+}
+</pre>
+
+<p>Le programme fonctionne, si le message «  Nombre de parametres insuffisants » est 	renvoyé lorsqu'aucun paramètre n'est transmis, le message « Entier 	suivant » suivi de l'entier successeur de la valeur fournie en paramètre, 	1 pour tout autre type de donnée non numérique. </p>
+
+<pre class="ScreenConsole">
+./monProgramme
+Nombre de parametres insuffisants
+./monProgramme 2
+Entier suivant : 3
+</pre>
+
+<h2>Travail attendu</h2>
+<ol>
+<li>Dans le répertoire 'tp1', créer un sous répertoire 'string_to_numeric'</li>
+<li>Créer un fichier give_me_next.c</li>
+<li>Y recopier le programme ci-dessus, sauvegarder.</li>
+<li>Le compiler, corriger les erreurs si besoin.</li>
+<li>Le copier dans son répertoire de rendu.</li>
+</ol>
+
+
+
+</div>
+</div>
+<br class="Cleaner" />
+
+</div>
+</div>
+</body>
+</html>

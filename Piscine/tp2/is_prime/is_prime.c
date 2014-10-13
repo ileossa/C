@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+
+int main( int argc, char**argv){
+	if(2>argc){
+		printf("Nombre de paramètres insuffisants\n");
+		return 1;
+	}
+
+	int val = atoi(argv[1]);
+	int sortie = 0, i;
+	
+	if( val % 2 == 0 ) {
+		printf("1 \n");
+		return 0;
+	}
+	else{
+		for( i = 3; i < val; i++ ) {
+			if( val % i == 0) {
+				printf("0 \n");
+				return 0;
+			}
+		}
+	}
+
+	return 0;
+}

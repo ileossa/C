@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <math.h>
+
+int main( int argc, char**argv){
+	if(2 > argc){
+		printf("Nombre de paramètres insuffisants\n");
+		return 1;
+	}
+
+	int i, j, tmp = 0;
+	int puissance = atoi(argv[1]);
+	int number = 0;
+
+	for( i = 0; i <= atoi(argv[2]); i++) {	
+		for( j=0; argv[2][j] != '\0'; j++ ) {
+			
+			number = argv[2][j] - 48;
+			tmp += pow( number, puissance );
+
+			printf("nombre => %d\n", number);
+			printf("puissance => %d \n", puissance);
+			printf("number => %d", number);
+			
+		}
+		if( tmp == number )
+		printf( "%d \n", tmp );
+	}
+return 0;
+}
+		

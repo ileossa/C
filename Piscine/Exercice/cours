@@ -1,0 +1,176 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="html" xmlns="http://www.w3.org/1999/xhtml">
+
+<head id="head" >
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>
+ Support de cours
+</title>
+
+<meta name="keywords" content=""/>
+<meta name="description" content=""/>
+<link href="http://10.34.128.10:8181/res/styles/default/style.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/node.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/tutorial.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/menu.css" rel="stylesheet" type="text/css"/><link href="http://10.34.128.10:8181/res/styles/default/context-menu.css" rel="stylesheet" type="text/css"/><script src="http://10.34.128.10:8181/res/js/prototype.js"></script><script src="http://10.34.128.10:8181/res/js/scriptaculous.js"></script><script src="http://10.34.128.10:8181/res/js/essilab.js"></script>
+
+
+</head>
+<body id="body" >
+
+<div id="container" >
+
+<div id="headerWrapper" >
+
+<div id="header" >
+
+
+
+
+
+
+
+<div id="menuGlobal" class="Menu ">
+	<ul>
+								
+	<li class="MenuItem">
+		<a href="http://10.34.128.10:8181/cours">Support de cours</a>
+			</li>
+								
+	<li class="MenuItem">
+		<a href="http://10.34.128.10:8181/exercises">Exercices</a>
+			</li>
+								
+	<li class="MenuItem">
+		<a href="http://10.34.128.10:8181/student/_points">Résultats</a>
+			</li>
+			</ul>
+</div>
+
+</div>
+</div>
+<div id="content" >
+
+<div class="ContentPane" >
+
+
+
+<div class="Tutorial">
+<h1>Support de cours</h1>
+<p>Cette page contient les supports des cours théoriques.</p>
+<p>Ils sont mis en ligne aussitôt le cours terminé et reste en ligne jusqu'à la fin du séminaire.</p>
+<p>Pensez à en faire une copie pour les conserver après!</p>
+
+
+
+<h2><a href="http://10.34.128.10:8181/files">COURS N°5. Gestion des fichiers</a></h2>
+<p>Début du cours Jeudi 7 octobre 2010 à 14h15.</p>
+
+<h2><a href="http://10.34.128.10:8181/pointeurs">COURS N°4. Les pointeurs et structures auto-référées</a></h2>
+<p>Début du cours Mercredi 6 octobre 2010 à 16h45.</p>
+
+
+<h2><a href="http://10.34.128.10:8181/types-derives">COURS N°3. Types dérivés : tableaux, structures, chaines de caractères...</a></h2>
+<p>Début du cours Mardi 8 octobre 2013 à 15h30.</p>
+
+<h2><a href="bases-langage-2">COURS N°2. Structures itératives et fonctions</a></h2>
+<p>Début du cours Lundi 7 octobre 2014 à 17h30.</p>
+
+<ul>
+  <li>
+   Priorités entre opérateurs
+  </li>
+  <li>
+  Types, aspets avancés
+  <ul>
+     <li>Conversions de types, le cast</li>
+     <li>Les situations de convertion de type</li>
+     <li>La règle de promotion des entiers</li>
+     <li>Les conversions arithmétiques habituelles</li>
+     <li>Risques d'erreur dans la comparaison d'entier signé en non signés</li>
+     
+  </ul>  
+  </li>
+  <li>Les structures itératives
+  <ul>
+    <li>Instruction for</li>
+    <li>Instruction while</li>
+    <li>Instruction do...while</li>
+    <li>L'instruction break</li>
+    <li>L'instruction continue</li>
+  </ul>
+  </li>
+  <li>Introduction aux fonctions
+  <ul>
+    <li>Déclaration et définition d'une fonction</li>
+    <li>Appel d'une fonction</li>
+    <li>Portée des variables</li>
+    <li>Variables globales</li>
+    <li>Variables locales</li>   
+    <li>Appels récurcif de fonction</li>
+  </ul>
+  </li>
+
+</ul>
+
+<h2><a href="bases-langage">COURS N°1. Les bases du langage C</a></h2>
+<p>Début du cours Lundi 7 octobre 2014 à 10h00.</p>
+
+<ul>
+  <li>
+       <strong>Points abordés</strong>
+    <ul>
+    <li>Relation entre langage, programme et environnement d'exécution.
+    <ul>
+    <li>Un langage compilé</li>
+    <li>Le C, est un langage compilé</li>
+    <li>Compilation d'un programme.</li>
+    </ul>
+    </li>
+    <li>Les bases du langage
+    <ul>
+    <li>Les mots clés</li>
+    <li>Les commentaires</li>
+    <li>Structure générale d'un programme C</li>
+    <li>Notion de variable</li>
+    <li>Les types primitifs
+      <ul>
+        <li>Les entiers</li>
+        <li>Les caractères</li>
+        <li>Les flottants</li>
+        <li>Le type void</li>
+      </ul>
+    </li>
+    <li>La syntaxe du langage
+       <ul>
+          <li>Notion d'expression</li>
+          <li>Opérateurs arithmétiques</li>
+          <li>Opérateurs d'affectation</li>
+          <li>Opérateurs relationnels</li>
+          <li>Opérateurs logiques</li>
+          <li>Opérateurs bit à bit</li>
+       </ul>
+    </li>
+    <li>Les structures décisionnelles<
+    <ul>
+       <li>Instruction if</li>
+       <li>Instruction if avec alternative simple</li>
+       <li>Instruction if avec alternative multiple</li>
+       <li>Instruction Switch</li>
+       <li>L'opérateur Ternaire</li>
+    </ul>
+    </li>
+    </ul>
+  </li>
+</ul>
+
+
+
+
+
+</div>
+
+</div>
+<br class="Cleaner" />
+
+</div>
+</div>
+</body>
+</html>
